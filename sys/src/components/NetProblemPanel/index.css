@@ -1,0 +1,134 @@
+.netPPanel{
+  width: 100%;
+  height: 100%;
+  /* position: fixed; */
+  /* z-index: 100; */
+  /* left: 0;
+    top: 0; */
+}
+.netPTable{
+  /* margin: 50px; */
+}
+
+.buildingLabel {
+  width: 600px;
+  height: 600px;
+  background: rgba(0, 0, 0, 0) url(/textures/label.png);
+  background-size: cover;
+}
+.tableCell{
+  height: 40px;
+}
+/* .el-table .cell {
+  overflow: visible;
+} */
+
+#rootTree{
+  float: left;
+  /* background-color: blue; */
+  height: 85%;
+  width: 60%;
+}
+#iconUploadVideoel {
+  float: left;
+  width: 30px;
+  height: 30px !important;
+  transform: translateY(23px);
+  position: absolute;
+  top: 32px;
+  left: 314px;
+}
+#netPData{
+  float: left;
+  /* background-color: red; */
+  /* border-left: solid rgba(179, 179, 179, 1) 3px; */
+  height: 100%;
+  width: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+}
+.el-button{
+  /* font-size: 15px;
+  margin-left: 50px;
+  padding: 5px,35px,5px,35px;
+
+  height: 25px;
+  line-height: 5px; */
+  /* width: ; */
+}
+.rootdivisionLine{
+  cursor: pointer;
+}
+.entdivisionLine{
+  cursor: pointer;
+}
+.cell{
+  height: 36px;
+}
+.el-input--small{
+  font-size: 15px;
+}
+
+#netPData .el-slider__bar {
+  background-color: #f4f4d0;
+}
+.el-table_2_column_3{
+  text-align: center;
+}
+.el-radio-button__inner{
+  width: 110px;
+  height: 30px;
+  font-size: 14px !important;
+  padding: 9px 0px 0px 0px !important;
+}
+#cancelDiv{
+  position: absolute;
+  width: 40px;
+  bottom: 35px;
+  transform: translateX(145px);
+  /* right: 0px; */
+}
+#confirmDiv{
+  position: absolute;
+  width: 40px;
+  bottom: 35px;
+  transform: translateX(270px);
+}
+#toolsButs{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: 500px;
+}
+.toolsBut{
+  margin: 5px;
+}
+#netPPanelDiv{
+  /* overflow-y: scroll; */
+}
+/* .el-table--scrollable-x .el-table__body-wrapper{
+  overflow: hidden;
+} */
+
+.netTooltip {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  /* padding-left: 10px;
+  padding-top: -10px;
+  padding-bottom: -10px; */
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 5px;
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); */
+  /* pointer-events: none; */
+}
+.netTooltip.hidden {
+  display: none;
+}
+.netTooltip p {
+  margin: 0;
+  font-size: 14px;
+  text-align: left;
+}
