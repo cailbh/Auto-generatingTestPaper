@@ -137,11 +137,50 @@
     width: 22%;
     height: 50%;
   }
+  #paperContainerC{
+    
+    scrollbar-width: none;
+    float: left;
+    width: 541px;
+    height: 100%;
+    /* background-color: #c32; */
+  }
   #graphContainer{
     
     scrollbar-width: none;
     float: left;
     width: 58%;
+    height: 100%;
+    /* background-color: #c32; */
+  }
+  #paperContainer{
+    
+    scrollbar-width: none;
+    float: left;
+    width:calc(58% - 541px);
+    height: 100%;
+    /* background-color: #c32; */
+  }
+  #proModelContainer{
+    
+    scrollbar-width: none;
+    position: absolute;
+    top: 614px;
+    left: 0px;
+    float: left;
+    width: 20%;
+    height: 57%;
+    /* background-color: #c32; */
+  }
+  
+  #indexContainer{
+    
+    scrollbar-width: none;
+    position: absolute;
+    top: 0px;
+    left: 545px;
+    float: left;
+    width: 20%;
     height: 100%;
     /* background-color: #c32; */
   }

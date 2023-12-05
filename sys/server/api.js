@@ -30,6 +30,32 @@ router.post('/api/test',function(req,res,next){
     });
   });
 
+router.post('/api/FormPaper',function(req,res,next){
+    console.log('FormPaper');
+    console.log(req.body.params)
+    let paperIndex = req.body.params;
+    let indexStr = paperIndex['type1']+' '+paperIndex['type2']+' '+paperIndex['type3']+' '+paperIndex['type4']+' ';
+    //创建子进程
+    //这里是shell语句，可以通过&&将多条命令执行，这里cmd 用activate就可以激活，只有conda的shell才需要加conda
+    var workerProcess = child_process.exec('python ../public/py/FormPaper.py '+indexStr, function (error, stdout, stderr) {
+      if (error) {
+          console.log(error.stack);
+          console.log('Error code: '+error.code);
+          console.log('Signal received: '+error.signal);
+      }else{
+        // console.log('stdout: ' + stdout);
+        // console.log('stderr: ' + stderr);
+        // res.send(stdout);
+        res.send(eval(stdout))   //这里要eval一下，然后在客户端才能eval将字符串转化为json数组
+      }
+      
+        
+    });
+  
+    workerProcess.on('exit', function (code) {
+        console.log('子进程已退出，退出码 '+code);
+    });
+  });
 router.post('/api/pro/createData', (req, res) => {
     // 这里的req.body能够使用就在index.js中引入了const bodyParser = require('body-parser')
     let newProblem = new models.Login({
@@ -87,6 +113,17 @@ router.get('/api/problem/allProblem', (req, res) => {
         }
     })
 });
+// 获取关系接口
+router.get('/api/problem/allRelationship', (req, res) => {
+    // 通过模型去查找数据库
+    models.ProblemConcept.find((err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    })
+});
 // 获取问题总数
 router.get('/api/problem/problemNum', (req, res) => {
     // 通过模型去查找数据库
@@ -106,7 +143,6 @@ router.get('/api/problem/problemsByPage', (req, res) => {
     console.log("req", req.query, "req")
     var pageNum = req.query['page']
     var pageSize = req.query['pageSize']
-    console.log(pageSize, pageNum)
     const aggregate = [
         {
             "$project":
@@ -122,6 +158,39 @@ router.get('/api/problem/problemsByPage', (req, res) => {
         // {"$match": {"cnt": {"$gt": 300, "$lte": 1000}}},
         { "$skip": (parseInt(pageNum) - 1) * parseInt(pageSize) },
         { "$limit": parseInt(pageSize) }
+    ]
+    // 通过模型去查找数据库
+    models.Problem.aggregate(aggregate).then((err, data) => {
+        if (err) {
+            res.send(err);
+            console.log(err)
+        } else {
+            res.send([data]);
+        }
+    });
+});
+// 通过Id获取问题
+router.get('/api/problem/problemById', (req, res) => {
+    console.log("req", req.query, "req")
+    var proIds = req.query['proIds'];
+    const aggregate = [
+        {
+            "$project":
+            {
+                "_id": 0,
+                "title": 1,
+                "type": 1,
+                "id": 1,
+                "content": 1
+                // "cnt": {"$size": '$seq'}
+            }
+        },
+        {
+            "$match": {
+                "id":{$in:proIds}
+            }
+        },
+        // {"id":{$all:proIds}}
     ]
     // 通过模型去查找数据库
     models.Problem.aggregate(aggregate).then((err, data) => {

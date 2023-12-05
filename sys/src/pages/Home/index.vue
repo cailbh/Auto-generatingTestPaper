@@ -23,8 +23,22 @@
         <div id="procPanel" class="panel">
           <ProcPanel></ProcPanel>
         </div>
-        <div id="graphContainer" v-show="showGraph" class="panel">
+        <!-- <div id="graphContainer" v-show="showGraph" class="panel">
           <Graph :toolsState="toolsState"></Graph>
+        </div> -->
+        
+        <div id="paperContainerC" v-show="showGraph" class="panel">
+        </div>
+        <div id="paperContainer" v-show="showGraph" class="panel">
+          <Paper :toolsState="toolsState"></Paper>
+        </div>
+        <div id="indexContainer" v-show="showGraph" class="panel">
+          <!-- <Paper :toolsState="toolsState"></Paper> -->
+          <indexInput></indexInput>
+        </div>
+        <div id="proModelContainer" v-show="showGraph" class="panel">
+          <!-- <Paper :toolsState="toolsState"></Paper> -->
+          <proModel></proModel>
         </div>
         <!-- <div id="overviewPanel" class="panel">
           <OverviewPanel></OverviewPanel>
@@ -49,7 +63,11 @@
 <script>
 import Head from "@/components/Header/index.vue";
 import Graph from '@/components/Graph/index.vue';
+import Paper from '@/components/PaperC/index';
 import Proinput from '@/components/Proinput/index.vue';
+import proModel from '@/components/proModel/index.vue';
+import IndexInput from '@/components/Indexinput/index.vue';
+
 import Scatter from '@/components/Scatter/index.vue';
 
 import ProcPanel from '@/components/ProblemContentPanel/index.vue';
@@ -61,7 +79,7 @@ import GroupJson from "@/assets/json/group.json";
 import SetJson from "@/assets/json/quz.json";
 import tools from "@/utils/tools.js";
 export default {
-  components: { Head, Graph, Scatter, ProcPanel, ProListPanel, NetPPanel, ControlPanel,Proinput },
+  components: { Head, Graph, Scatter, ProcPanel, ProListPanel, NetPPanel, ControlPanel,Proinput,Paper,IndexInput,proModel },
   /* eslint-disable no-unused-vars */
   data() {
     return {

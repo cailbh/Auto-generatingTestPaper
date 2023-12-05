@@ -21,7 +21,7 @@ from langchain.schema import (
 )
 
 inputDir = r"problemsDel.json"
-outFile = "problemsDelZhiPu.json"
+outFile = "problemsDelKD.json"
 result = []
 # openai.api_key = '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'  # 3/min
 

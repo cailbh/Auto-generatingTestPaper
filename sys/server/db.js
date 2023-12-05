@@ -91,10 +91,12 @@ const Models = {
     // UserProblem: mongoose.model('userProblem', userProblemSchema, 'filterDS_user_problem'),
     ConceptTree: mongoose.model('conceptTree', conceptTreeSchema, 'conceptTreeNew'),
     // ConceptProblem: mongoose.model('conceptProblem', conceptProblemSchema, 'filterDS_concept_problem'),
-    ProblemConcept: mongoose.model('problemConcept', problemConceptSchema, 'createdRel'),//'problem_concept'),
+    ProblemConcept: mongoose.model('problemConcept', problemConceptSchema, 'proConRel'),//'problem_concept'),
     // Problem:mongoose.model('problem', problemsSchema, 'problems'),
-    Problem:mongoose.model('problem', problemsSchema, 'problems'),
-    newProblem:mongoose.model('newProblem', problemsSchema, 'newProblem'),
+    Problem:mongoose.model('problem', problemsSchema, 'pp'),
+    // newProblem:mongoose.model('newProblem', problemsSchema, 'newProblem'),
+    
+    // newProblem:mongoose.model('newProblem', problemsSchema, 'pp'),
     Student:mongoose.model('student', studentSchema, 'ent_student'),
     Submission:mongoose.model('submission', submissionsSchema, 'submissions'),
 

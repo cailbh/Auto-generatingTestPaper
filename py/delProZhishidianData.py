@@ -142,8 +142,8 @@ for point in X_tn:
     k = k + 1
 
 plt.show()
-with open(outFile2, "w", errors="igone", encoding="utf-8") as f:
+with open(outFile2, "w", errors="ignore", encoding="utf-8") as f:
     f.write(json.dumps(final_result, indent=4, ensure_ascii=False))
 
-with open(outFile1, "w", errors="igone", encoding="utf-8") as f:
+with open(outFile1, "w", errors="ignore", encoding="utf-8") as f:
     f.write(json.dumps(zsdIdMap, indent=4, ensure_ascii=False))

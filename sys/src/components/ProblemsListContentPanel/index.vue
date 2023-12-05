@@ -22,8 +22,8 @@
         </el-table-column> -->
         <el-table-column fixed="right" label="操作" width="120">
           <template slot-scope="scope">
-            <el-button @click="click_View(scope)" type="text" size="medium">查看</el-button>
-            <el-button type="text" size="small">编辑</el-button>
+            <el-button @click="click_View(scope.row)" type="text" size="medium">查看</el-button>
+            <el-button @click="click_ProAdd(scope.row)" type="text" size="small">添加</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -48,18 +48,11 @@ export default {
   props: [],
   data() {
     return {
+      proIdList:[],
       problemsNum: 0,
       page:1,
       pageSize:20,
-      tableData: [
-      //   {
-      //   type: '选择题',
-      //   name: '王小虎',
-      // }, {
-      //   type: '选择题',
-      //   name: '王小虎',
-      // }
-      ],
+      tableData: [ ],
       margin: { top: 5, right: 5, bottom: 5, left: 5 },
     };
   },
@@ -67,12 +60,25 @@ export default {
     type(val) {
     },
     curEntId(curEntId) {
+    },
+    proIdList(val){
+      const _this = this;
+      _this.$bus.$emit("proIdList", val);
     }
   },
   methods: {
+    click_ProAdd(val){
+      console.log(val);
+      const _this = this;
+      if(_this.proIdList.indexOf(val.id)==-1){
+        _this.proIdList.push(val.id);
+      }
+
+    },
     getProblemsNum() {
       const _this = this;
       let data = [];
+
       this.$http
         .get("/api/problem/problemNum", {}, {})
         // .get("/api/test", {}, {})
@@ -112,7 +118,7 @@ export default {
     const _this = this;
     this.$nextTick(() => {
       // _this.updata();
-
+      // _this.proIdList = ["1701115978840051712", "1697260400746143744"];
     });
   },
   mounted() {
@@ -128,6 +134,10 @@ export default {
     this.$bus.$on('allProblem', (val) => {
       _this.problemsData = val;
       // _this.updata();
+    });
+    this.$bus.$on('proIdDelList', (val) => {
+      _this.proIdList = val;
+      console.log(val);
     });
   },
   // beforeDestroy() {
