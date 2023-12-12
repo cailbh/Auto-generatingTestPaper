@@ -36,9 +36,13 @@
           <!-- <Paper :toolsState="toolsState"></Paper> -->
           <indexInput></indexInput>
         </div>
-        <div id="proModelContainer" v-show="showGraph" class="panel">
+        <div id="proConScatterContainer" v-show="showGraph" class="panel">
           <!-- <Paper :toolsState="toolsState"></Paper> -->
-          <proModel></proModel>
+          <proConScatter></proConScatter>
+        </div>
+        <div id="proConSankeyContainer" v-show="showGraph" class="panel">
+          <!-- <Paper :toolsState="toolsState"></Paper> -->
+          <proConSankey></proConSankey>
         </div>
         <!-- <div id="overviewPanel" class="panel">
           <OverviewPanel></OverviewPanel>
@@ -65,7 +69,8 @@ import Head from "@/components/Header/index.vue";
 import Graph from '@/components/Graph/index.vue';
 import Paper from '@/components/PaperC/index';
 import Proinput from '@/components/Proinput/index.vue';
-import proModel from '@/components/proModel/index.vue';
+import proConScatter from '@/components/proConScatter/index.vue';
+import proConSankey from '@/components/proConSankey/index.vue';
 import IndexInput from '@/components/Indexinput/index.vue';
 
 import Scatter from '@/components/Scatter/index.vue';
@@ -79,7 +84,7 @@ import GroupJson from "@/assets/json/group.json";
 import SetJson from "@/assets/json/quz.json";
 import tools from "@/utils/tools.js";
 export default {
-  components: { Head, Graph, Scatter, ProcPanel, ProListPanel, NetPPanel, ControlPanel,Proinput,Paper,IndexInput,proModel },
+  components: { Head, Graph, Scatter, ProcPanel, ProListPanel, NetPPanel, ControlPanel,Proinput,Paper,IndexInput,proConScatter,proConSankey },
   /* eslint-disable no-unused-vars */
   data() {
     return {
@@ -87,6 +92,8 @@ export default {
       submissionsData: [],
       groupData: GroupJson,
       setTimeData: SetJson,
+      allConcept:'',
+      allProblem:'',
       netData: [],
       problemRelByConcept: [],
       problemListByConcept: [],
@@ -109,6 +116,59 @@ export default {
       videoTime: 0,
       windowWidth: document.documentElement.clientWidth, //实时屏幕宽度
       windowHeight: document.documentElement.clientHeight, //实时屏幕高度
+      attrColorLightList:[
+        "rgb(253, 174, 134)",
+        "rgb(255, 184, 240)",
+        "rgb(255, 173, 159)",
+        "rgb(255, 208, 133)",
+        "rgb(145, 226, 199)",
+        "rgb(167, 158, 221)",
+        "#ffd8b1",
+      ],
+      attrColorList:[
+        "rgb(254, 33, 79)",
+        "rgb(115, 230, 163)",
+        "rgb(250, 210, 50)",
+        "rgb(255, 120, 90)",
+        "rgb(255, 159, 28)",
+        "rgb(6, 214, 160)",
+        "rgb(125, 98, 211)",
+        "#b6a2f7",
+      ],
+      mcolor: [
+        "rgb(255,60,60)",
+        "rgb(155,20,100)",
+        "rgb(255,83,255)",
+        "rgb(200,100,50)",
+        "rgb(235,135,162)",
+        "rgb(200,200,102)",
+        "rgb(255,178,101)",
+        "rgb(63,151,134)",
+        "rgb(83,155,255)",
+        "rgb(50,200,120)",
+        "rgb(2,50,200)",
+        "rgb(0,122,244)",
+        "rgb(150,122,244)",
+        "rgb(168,168,255)",
+        "rgb(200,200,200)",
+      ],
+      mLigntcolor: [
+        "#ff9c9c",
+        "#cc88b0",
+        "#ffa8ff",
+        "#e3b097",
+        "#f4c3d0",
+        "#f4f4d0",
+        "#ffd8b1",
+        "#9ecac2",
+        "#a8ccff",
+        "#97e3ba",
+        "#6f8be0",
+        "rgb(0,122,244)",
+        "#b6a2f7",
+        "rgb(168,168,255)",
+        "rgb(200,200,200)",
+      ],
       marge: {
         top: 6,
         right: 10,
@@ -138,20 +198,31 @@ export default {
     },
   },
   methods: {
-    // getProblems() {
-    //   const _this = this;
-    //   let data = [];
-    //   this.$http
-    //     // .get("/api/problem/allProblem", { params: { name: "12345" } }, {})
-    //     .get("/api/test", {}, {})
-    //     .then((response) => {
-    //       console.log(response.body);
-    //     });
-    // },
-   
+
+    getAllProblems() {
+      const _this = this;
+      let data = [];
+      this.$http
+        .get("/api/problem/allProblem", { params: { } }, {})
+        .then((response) => {
+          _this.allProblem = response.body;
+          this.$bus.$emit("allProblems", _this.allProblem);
+        });
+    },
+    getAllConcepts() {
+      const _this = this;
+      let data = [];
+      this.$http
+        .get("/api/concept/allConcept", { params: { } }, {})
+        .then((response) => {
+          _this.allConcept = response.body;
+          this.$bus.$emit("allConcepts", _this.allConcept);
+        });
+    },
     getAllData() {
       const _this = this;
-      // this.getProblems();
+      this.getAllProblems();
+      this.getAllConcepts();
     }
   },
   created: function () {
@@ -160,6 +231,9 @@ export default {
   mounted() {
     const _this = this;
     this.$el.style.setProperty("--heightStyle", this.windowHeight + "px");
+    this.getAllData();
+    this.$bus.$emit("attrColorlist", _this.attrColorLightList);
+    this.$bus.$emit("allProblem", _this.allProblem);
     // this.showVideo = true;
     // this.$bus.$emit("groupData", _this.groupData);
     // this.toolState = {
@@ -167,7 +241,6 @@ export default {
     //   "addRelMain": false,
     //   "delRel":false,
     // }
-    this.getAllData();
     this.$bus.$on('SelectedStu', (val) => {
     });
   },

@@ -1,0 +1,70 @@
+[
+    {
+        "sortId": 58,
+        "id": "1617854657106358272",
+        "title": "写出判断区间范围的逻辑表达式[1]",
+        "content": "假设变量已正确定义并赋值，写出满足下列条件的C语言表达式。\n\n `-1` ≤ `x` ≤ `1`： ",
+        "type": "FILL_IN_THE_BLANK_FOR_PROGRAMMING",
+        "difficulty": 1,
+        "score": 1,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "65",
+                        "name": "表达式",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "res": "[{'name':'条件语句'，'description':'条件语句用于根据给定的条件来执行不同的代码块。在这个题目中，我们需要根据给定的条件 `-1` ≤ `x` ≤ `1` 来编写相应的表达式。'}]"
+    },
+    {
+        "sortId": 59,
+        "id": "1617851330876497920",
+        "title": "写出判断闰年的逻辑表达式",
+        "content": "假设变量已正确定义并赋值，写出满足下列条件的C语言表达式。\n\n`year` 是闰年，即 `year` 能被 4 整除但不能被 100 整除，或 `year` 能被 400 整除：\n\n\n\n\n\n",
+        "type": "FILL_IN_THE_BLANK_FOR_PROGRAMMING",
+        "difficulty": 1,
+        "score": 1,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "65",
+                        "name": "表达式",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "res": "[{'name':'闰年判断'，'description':'在C语言中，判断一个年份是否为闰年可以使用逻辑运算符和取余运算符。根据题目给出的条件，我们可以使用以下表达式来判断一个年份是否为闰年：(year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)。其中，% 表示取余运算符，== 表示相等运算符，&& 表示逻辑与运算符，|| 表示逻辑或运算符。'}]"
+    }
+]

@@ -7,7 +7,7 @@
     <!-- //SupportPanel</div> -->
     <div id="proListPanelDiv" class="panelBody" ref="proListPanelDiv">
 
-      <el-table :data="tableData" height="500" style="width: 100%;">
+      <el-table :data="tableData" height = 420 style="width: 100%;">
         <el-table-column prop="type" label="题型" width="100">
         </el-table-column>
         <el-table-column prop="title" label="题目" width="300">
@@ -125,7 +125,7 @@ export default {
     const _this = this
 
     _this.getProblemsNum();
-    _this.getProblemsByPages(1,10);
+    _this.getProblemsByPages(1,_this.pageSize);
     // _this.tableData.find(function (d) { return d['key'] == 'name' })['value'] = 'Computer Network';
     this.$bus.$on('selectEnt', (val) => {
       _this.curEntId = val;

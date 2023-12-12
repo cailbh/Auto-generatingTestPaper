@@ -1,12 +1,12 @@
 [
     {
-        "sortId": 58,
-        "id": "1617854657106358272",
-        "title": "写出判断区间范围的逻辑表达式[1]",
-        "content": "假设变量已正确定义并赋值，写出满足下列条件的C语言表达式。\n\n `-1` ≤ `x` ≤ `1`： ",
-        "type": "FILL_IN_THE_BLANK_FOR_PROGRAMMING",
+        "sortId": 0,
+        "id": "1734036249464434688",
+        "title": "阶乘函数求解",
+        "content": "本题要求实现一个函数，建议用递归的方法实现第$n$项阶乘函数的求解。\n\n已知其公式如下：\n\n$当 n=0,1时：n! = 1；$\n\n$当n>=2时， n!=n*(n-1)!;$\n\n### 函数接口定义：\n\n```c++\nlong Fact( int n );\n```\n\n其中 `n` 是输入的非负整数。\n\n### 裁判测试程序样例：\n\n```c++\n#include <stdio.h>\n\nlong Fact( int n );\n\nint main()\n{\n  int n;\n  scanf(\"%d\", &n);\n\n  printf(\"%d! = %ld\\n\", n, Fact(n));\n  return 0;\n}\n\n/* 请在这里填写答案 */\n```\n\n### 输入样例：\n\n在这里给出一组输入。例如：\n\n```in\n10\n```\n\n### 输出样例：\n\n在这里给出相应的输出。例如：\n\n```out\n10! = 3628800\n```",
+        "type": "CODE_COMPLETION",
         "difficulty": 1,
-        "score": 1,
+        "score": 30,
         "knowledgePointPaths": [
             {
                 "knowledgePoints": [
@@ -17,30 +17,1749 @@
                         "enName": "C Programming"
                     },
                     {
-                        "id": "64",
-                        "name": "基本数据类型与表达式",
+                        "id": "74",
+                        "name": "函数与程序结构",
                         "isLeaf": false,
                         "enName": ""
                     },
                     {
-                        "id": "65",
-                        "name": "表达式",
+                        "id": "75",
+                        "name": "函数定义与调用",
                         "isLeaf": true,
                         "enName": ""
                     }
                 ]
             }
         ],
-        "res": "[{'name':'条件语句'，'description':'条件语句用于根据给定的条件来执行不同的代码块。在这个题目中，我们需要根据给定的条件 `-1` ≤ `x` ≤ `1` 来编写相应的表达式。'}]"
+        "referenceCount": 2,
+        "res": "[{'name': '递归', 'description': '递归是一种在函数定义中使用函数自身的方法。在本题中，可以使用递归的方法来实现阶乘函数的求解。递归的思想是将一个大问题分解为一个或多个相同或类似的小问题，然后通过解决小问题来解决大问题。在阶乘函数中，可以将n的阶乘表示为n乘以(n-1)的阶乘，然后再将(n-1)的阶乘表示为(n-1)乘以(n-2)的阶乘，依此类推，直到n等于0或1时，阶乘的值为1。通过递归的方式，可以简洁地实现阶乘函数的求解。'}]"
     },
     {
-        "sortId": 59,
-        "id": "1617851330876497920",
-        "title": "写出判断闰年的逻辑表达式",
-        "content": "假设变量已正确定义并赋值，写出满足下列条件的C语言表达式。\n\n`year` 是闰年，即 `year` 能被 4 整除但不能被 100 整除，或 `year` 能被 400 整除：\n\n\n\n\n\n",
+        "sortId": 1,
+        "id": "1733681800569069568",
+        "title": "指针参数传递进行最大、最小值求解",
+        "content": "从键盘任意输入两个整数，用指针作函数参数，编程实现最大值、最小值求解及位置互换，最后进行依次输出（见输入输出样例）。\n\n### 函数接口定义：\n\n```c++\nvoid swap(int *x, int *y);\n```\n\n其中 \\*x 和 \\*y 是传入的指针参数。\n\n裁判测试程序样例：\n\n```c++\n#include <stdio.h>\nvoid swap(int *x, int *y);\nint main()\n{\n   int a, b;\n   scanf(\"%d %d\", &a, &b);\n\n   swap(&a, &b);\n\n   printf(\"max=%d min=%d\\n\", a, b);\n   return 0;\n}\n/* 请在这里填写答案 */\n```\n\n### 输入样例：\n\n在这里给出一组输入。例如：\n\n```in\n2 21\n```\n\n### 输出样例：\n\n在这里给出相应的输出。例如：\n\n```out\nmax=21 min=2\n```",
+        "type": "CODE_COMPLETION",
+        "difficulty": 1,
+        "score": 30,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "82",
+                        "name": "指针与结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "83",
+                        "name": "指针",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 7,
+        "res": "[{'name': '指针', 'description': '指针是C语言中的一种特殊数据类型，它存储了一个变量的内存地址。通过指针，我们可以直接访问和修改变量的值，而不需要知道变量的名称。在本题中，我们使用指针作为函数参数，实现了两个整数的位置互换。'}, {'name': '函数', 'description': '函数是C语言中的一种代码组织方式，它可以接受输入参数并返回一个值。在本题中，我们定义了一个名为swap的函数，它接受两个指针作为参数，并通过修改指针所指向的变量的值，实现了两个整数的位置互换。'}]"
+    },
+    {
+        "sortId": 2,
+        "id": "1732257317256658944",
+        "title": "jmu-c-6.3",
+        "content": "输出“魔方阵”。 所谓魔方阵, 即它的每一行、 每一列和对角线之和均相等。 例如,三阶魔方阵为 \n```c\n8 1 6 \n3 5 7 \n4 9 2\n```\n要求输出 1~n^2(n 是< = 15 的奇数) 的自然数构成的奇数阶魔方阵。\n### 输入样例:\n\n```in\n5\n```\n\n### 输出样例:\n\n```out\n   17   24    1    8   15\n   23    5    7   14   16\n    4    6   13   20   22\n   10   12   19   21    3\n   11   18   25    2    9\n\n```\n",
+        "type": "PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "81",
+                        "name": "二维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "67",
+                        "name": "分支控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "68",
+                        "name": "if-else",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "73",
+                        "name": "嵌套循环",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 6,
+        "res": "[{'name':'魔方阵','description':'魔方阵是指每一行、每一列和对角线之和均相等的矩阵。本题要求输出1~n^2的自然数构成的奇数阶魔方阵。'}]"
+    },
+    {
+        "sortId": 3,
+        "id": "1732256459903168512",
+        "title": "jmu-c-6.2",
+        "content": "将一个给定的整数插入原本有序的整数序列中, 使结果序列仍然有序。\n\n### 输入格式:\n\n第一行输入非负整数 n ( <10); 第二行给出 n 个从小到大排好序的整数; 第三行给出要插入前面所给的 n 个有序整数序列中的整数 x。\n\n### 输入样例:\n\n```in\n5\n1 2 4 5 7\n3\n```\n\n### 输出样例:\n\n```out\n输入3后仍然有序的序列如下：\n1  2  3  4  5  7  \n\n",
+        "type": "PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "79",
+                        "name": "一维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "67",
+                        "name": "分支控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "68",
+                        "name": "if-else",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "71",
+                        "name": "for",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 30,
+        "res": "[{'name':'插入排序','description':'插入排序是一种简单直观的排序算法。它的基本思想是将一个记录插入到已经排好序的有序表中，从而得到一个新的、记录数增加1的有序表。具体实现时，可以从第二个元素开始，将其与前面的元素进行比较，找到合适的位置插入。插入排序的时间复杂度为O(n^2)。'}]"
+    },
+    {
+        "sortId": 4,
+        "id": "1732255578365333504",
+        "title": "jmu-c-6.1",
+        "content": "请输入整数 n, 输出如下所示的杨辉三角 (n 行):\n1 \n1 1 \n1 2 1 \n1 3 3 1 \n1 4 6 4 1 \n1 5 10 10 5 1 \n1 6 15 20 15 6 1 \n…\n\n\n\n### 输入样例:\n\n```in\n6 \n```\n\n### 输出样例:\n\n在这里给出相应的输出。例如：\n\n```out\n     1\n     1     1\n     1     2     1\n     1     3     3     1\n     1     4     6     4     1\n     1     5    10    10     5     1\n```\n",
+        "type": "PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "81",
+                        "name": "二维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "73",
+                        "name": "嵌套循环",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 28,
+        "res": "[{'name':'循环结构'，'description':'循环结构是C语言中的一种控制结构，用于重复执行一段代码。在这个习题中，需要使用循环结构来打印杨辉三角的每一行。'}，{'name':'二维数组'，'description':'二维数组是C语言中的一种数据结构，用于存储多个相同类型的元素。在这个习题中，需要使用二维数组来存储杨辉三角的每个元素。'}]"
+    },
+    {
+        "sortId": 5,
+        "id": "1732228318648307712",
+        "title": "编写一个函数用于计算高于平均分的人数。",
+        "content": "编写一个函数int fun(float s\\[\\],int n)，用于计算高于平均分的人数，并作为函数值返回，其中数组s中存放n位学生的成绩。再编写一个主函数，从键盘输入一批分数（用-1来结束输入），调用fun函数计算并输出高于平均分的人数。\n\n### 输入格式:\n\n输入一批浮点数，用-1来结束输入。\n\n### 输出格式:\n\n一个整数。\n\n### 输入样例:\n\n在这里给出一组输入。例如：\n\n```in\n10.0 20.0 30.0 40.0 50.0 -1\n```\n\n### 输出样例:\n\n在这里给出相应的输出。例如：\n\n```out\n2\n```",
+        "type": "PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "74",
+                        "name": "函数与程序结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "75",
+                        "name": "函数定义与调用",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 7,
+        "res": "[{'name': '函数', 'description': '函数是一段完成特定任务的代码块，可以通过函数名来调用执行。函数可以接受参数，并且可以返回一个值。在本题中，需要编写一个函数int fun(float s[],int n)，用于计算高于平均分的人数，并作为函数值返回。'}, {'name': '数组', 'description': '数组是一种存储多个相同类型数据的集合。在本题中，需要使用数组s来存放n位学生的成绩。'}, {'name': '循环', 'description': '循环是一种重复执行某段代码的结构。在本题中，可以使用循环来从键盘输入一批分数，并且可以使用循环来计算高于平均分的人数。'}, {'name': '条件语句', 'description': '条件语句是根据条件的真假来执行不同的代码块。在本题中，可以使用条件语句来判断输入是否结束，并且可以使用条件语句来判断学生的成绩是否高于平均分。'}, {'name': '输入输出', 'description': '输入输出是程序与用户或外部设备之间进行数据交换的过程。在本题中，需要从键盘输入一批分数，并且需要输出高于平均分的人数。'}]"
+    },
+    {
+        "sortId": 6,
+        "id": "1732207300374392832",
+        "title": "jmu-c-6.2",
+        "content": "要求 printLetters()函数实现输入字符串 s, 并依次输出字符串 s 中的所有字母。\n\n### 函数接口定义：\n```c++\nvoid printLetters(char s[]);\n```\n\n\n### 裁判测试程序样例：\n```c++\n在这里给出函数被调用进行测试的例子。例如：\n#include<stdio.h>\n\n/* 请在这里填写答案 */\n\n  int main()\n\n  {\n\n  char str[80];\n\n  printLetters(str);\n\n  puts(str);\n\n  return 0;\n\n  }\n\n\n```\n\n### 输入样例：\n\n```in\nab23C%$+De\n```\n\n### 输出样例：\n\n```out\nabCDe\n```\n",
+        "type": "CODE_COMPLETION",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "79",
+                        "name": "一维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "72",
+                        "name": "while和do-while",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "67",
+                        "name": "分支控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "68",
+                        "name": "if-else",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 1,
+        "res": "[{'name':'字符串处理','description':'字符串处理是C语言中非常重要的知识点之一。在这个题目中，需要对输入的字符串进行处理，去除其中的非字母字符，只保留字母字符。可以使用循环遍历字符串的每个字符，判断是否为字母字符，如果是则输出，如果不是则跳过。'}]"
+    },
+    {
+        "sortId": 7,
+        "id": "1732203339412107264",
+        "title": "jmu-c-6.1",
+        "content": "要求 changStr()函数实现将字符串 s 中 ‘0’ ~ ‘8’ 的数字字符变为比它大 1 的数字字符, 将 ‘9’ 变为 ‘0’。\n### 函数接口定义：\n```c++\nvoid changeStr(char s[]);\n```\n\n### 裁判测试程序样例：\n```c++\n在这里给出函数被调用进行测试的例子。例如：\n#include<stdio.h>\n\n#include<string.h>\n\n\n\nint main()\n\n  {\n\n  char str[128];\n\n  gets(str);\n\n  changeStr(str);\n\n  puts(str);\n\n  return 0;\n\n  }\n\n/* 请在这里填写答案 */\n```\n\n### 输入样例：\n\n```in\nab12cd56EF89GH4\n```\n\n### 输出样例：\n\n在这里给出相应的输出。例如：\n\n```out\nab23cd67EF90GH5\n",
+        "type": "CODE_COMPLETION",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "79",
+                        "name": "一维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "67",
+                        "name": "分支控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "68",
+                        "name": "if-else",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "71",
+                        "name": "for",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 1,
+        "res": "[{'name': '字符串处理', 'description': '字符串处理是C语言中常见的操作之一。在本题中，需要对输入的字符串进行处理，将其中的数字字符进行替换。'}]"
+    },
+    {
+        "sortId": 8,
+        "id": "1732194780473430016",
+        "title": "jmu-c-6.3",
+        "content": "实现统计输入字符串 (以回车换行符为结束标志) 中元音字母的个数。\n```c++\n#include<stdio.h>\n\nint main()\n\n{\n\n    char s[100], alpha[]={'a', 'e', 'i', 'o', 'u'};\n\n    int num[5]={0};\n\n    int i=0, k;\n\n    while ((s[i]=getchar()) !='\\n')\n\n        i++;\n\n    s[i]='\\0';\n\n    i=0;\n\n    while (s[i] !='\\0')\n\n    {\n\n        for (k=0; k < 5; k++)\n\n            if ( )\n\n            {\n\n                num[k]++;\n\n                ;\n\n            }\n\n        i++;\n\n    }\n\n    for (k=0; k < 5; k++)\n\n        printf(\"%c:%d\\n\", alpha[k], num[k]);\n\n    return 0;\n\n}\n```\n\n",
         "type": "FILL_IN_THE_BLANK_FOR_PROGRAMMING",
         "difficulty": 1,
-        "score": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "79",
+                        "name": "一维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "73",
+                        "name": "嵌套循环",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name':'字符数组', 'description':'字符数组是由一系列字符组成的数据结构，可以用来存储字符串。在C语言中，字符数组以null字符（'\\0'）作为结束标志。本题中，使用字符数组s来存储输入的字符串。'}, {'name':'循环结构', 'description':'循环结构是一种重复执行某段代码的结构。在C语言中，常用的循环结构有while循环和for循环。本题中，使用while循环和for循环来遍历字符数组s中的每个字符。'}, {'name':'条件判断', 'description':'条件判断是根据某个条件的真假来决定是否执行某段代码。在C语言中，常用的条件判断语句有if语句和switch语句。本题中，使用if语句来判断字符是否为元音字母。'}, {'name':'变量', 'description':'变量是用来存储数据的内存空间的名称。在C语言中，变量需要先声明后使用，并且可以赋予不同的值。本题中，使用变量s来存储输入的字符，使用变量alpha来存储元音字母，使用变量num来存储每个元音字母的个数。'}, {'name':'输入输出', 'description':'输入输出是程序与用户或外部设备之间进行数据交换的过程。在C语言中，常用的输入输出函数有scanf和printf。本题中，使用getchar函数从标准输入读取字符，使用printf函数输出结果。'}]"
+    },
+    {
+        "sortId": 9,
+        "id": "1732193629418000384",
+        "title": "jmu-c-6.2",
+        "content": "有 15 个已经排好序的数存放在一个数组中, 输入一个数, 要求用折半查找法找出该数是数组中第几个元素的值。 如果该数不在数组中, 则输出无此数。\n变量说明: top, bott 为查找区间两端点的下标; loca 为查找成功与否的开关变量。\n```c++\n#include<stdio.h>\n\nint main()\n\n{\n\n    int N, number, top, bott, mid, loca;\n\n    int a[15]={-3, -1, 0, 1, 2, 4, 6, 7, 8, 9, 12, 19, 21, 23, 50};\n\n    N=15;\n\n    scanf(\"%d\", &number);\n\n    loca=0; top=0; bott=N - 1;\n\n    if ((number < a[0]) ||(number > a[N - 1]))\n\n        loca=-1;\n\n    while ((loca==0) && (top <= bott))\n\n    {\n\n        mid= ;\n\n        if (number==a[mid])\n\n        {\n\n            loca=mid;\n\n            printf(\"The serial number is % d\\n\", loca + 1);\n\n            break;\n\n        }\n\n        else\n\n            if (number < a[mid])\n\n                bott=mid - 1;\n\n        else\n\n             ;\n\n    }\n\n    if ( )\n\n        printf(\"%d isn' t in table\\n\", number);\n\n    return 0;\n\n}\n```\n\n",
+        "type": "FILL_IN_THE_BLANK_FOR_PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "79",
+                        "name": "一维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "67",
+                        "name": "分支控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "68",
+                        "name": "if-else",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "72",
+                        "name": "while和do-while",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 1,
+        "res": "[{'name': '折半查找法', 'description': '折半查找法是一种在有序数组中查找指定元素的算法。它通过将待查找的元素与数组中间位置的元素进行比较，如果相等则查找成功，如果待查找元素小于中间位置的元素，则在数组的前半部分继续查找，如果待查找元素大于中间位置的元素，则在数组的后半部分继续查找。通过不断缩小查找范围，最终可以找到待查找元素的位置或确定其不存在于数组中。'}]"
+    },
+    {
+        "sortId": 10,
+        "id": "1732192593609453568",
+        "title": "jmu-c-6.1",
+        "content": "实现将输入的十进制正整数转换为十六进制数, 且用字符串存放该十六进制数。\n\n```c++\n#include<stdio.h>\n\nint main()\n\n{\n\n    int x,b,i,j;\n\n    char s[5];\n\n    printf(\"Input a number(Dec): \");\n\n    scanf(\"%d\",&x);\n\n    \n\n    while(x>0)\n\n    {\n\n        b=x%16;\n\n        if(b>9)\n\n            s[i]=b-10+'A';\n\n        else\n\n             ;\n\n        x=x/16;\n\n        i++;\n\n    }\n\n    printf(\"Hex number is: \");\n\n    for(j=i-1;j>=0;j--)\n\n        putchar( );\n\n    printf(\"\\n\");\n\n    return 0;\n\n}\n```\n\n",
+        "type": "FILL_IN_THE_BLANK_FOR_PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "79",
+                        "name": "一维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "67",
+                        "name": "分支控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "68",
+                        "name": "if-else",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "71",
+                        "name": "for",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 1,
+        "res": "[{'name':'变量声明和初始化'，'description':'在程序中声明和初始化变量，包括整型变量和字符数组变量。'}, {'name':'输入输出函数'，'description':'使用printf和scanf函数进行输入输出操作。'}, {'name':'循环结构'，'description':'使用while循环结构进行重复执行操作。'}, {'name':'条件判断'，'description':'使用if条件判断语句进行条件判断操作。'}, {'name':'算术运算'，'description':'使用算术运算符进行数值计算操作。'}, {'name':'字符操作'，'description':'使用字符操作函数进行字符处理操作。'}, {'name':'数组操作'，'description':'使用数组进行数据存储和处理操作。'}, {'name':'字符串操作'，'description':'使用字符串进行数据存储和处理操作。'}]"
+    },
+    {
+        "sortId": 11,
+        "id": "1732190749126504450",
+        "title": "jmu-c-6.10",
+        "content": "下列程序的输出结果是 ( )。\n```c\n# include <stdio. h>\nint main ()\n{\nchar s[]=\"abcdef\";\nint a,b;\nfor(a=b=0;s[a]!='\\0';a++)\nif (s[a]!='c')\ns[b++]=s[a];\ns[b]='\\0';\nprintf(\"s[]=%s\\n \",s);\nreturn 0;\n}\n```",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "80",
+                        "name": "字符串",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "71",
+                        "name": "for",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 5,
+        "res": "[{'name': '字符数组', 'description': '字符数组是由一系列字符组成的数据结构，可以用来存储和处理字符串。在C语言中，字符数组以null字符（\\0）作为结束标志。'}, {'name': '循环结构', 'description': '循环结构是一种重复执行某段代码的控制结构。在C语言中，常用的循环结构有for循环、while循环和do-while循环。'}, {'name': '条件语句', 'description': '条件语句是根据条件的真假来执行不同的代码块。在C语言中，常用的条件语句有if语句和switch语句。'}, {'name': '字符比较', 'description': '字符比较是通过比较字符的ASCII码值来判断字符的大小关系。在C语言中，可以使用关系运算符（如==、!=、<、>、<=、>=）来进行字符比较。'}, {'name': '字符赋值', 'description': '字符赋值是将一个字符的值赋给另一个字符变量。在C语言中，可以使用赋值运算符（=）来进行字符赋值。'}, {'name': '字符串输出', 'description': '字符串输出是将一个字符数组中的字符逐个输出。在C语言中，可以使用printf函数的%s格式控制符来输出字符串。'}, {'name': '数组元素赋值', 'description': '数组元素赋值是将一个值赋给数组中的某个元素。在C语言中，可以使用下标运算符（[]）来进行数组元素赋值。'}, {'name': '数组元素访问', 'description': '数组元素访问是通过下标来获取数组中的某个元素的值。在C语言中，可以使用下标运算符（[]）来进行数组元素访问。'}, {'name': '字符串结束标志', 'description': '字符串结束标志是一个null字符（\\0），用于表示字符串的结束。在C语言中，字符串必须以null字符结尾，否则会导致字符串处理函数无法正确处理字符串。'}, {'name': '字符数组长度', 'description': '字符数组长度是指字符数组中字符的个数，不包括结束标志null字符。在C语言中，可以使用strlen函数来获取字符数组的长度。'}]"
+    },
+    {
+        "sortId": 12,
+        "id": "1732190749126504449",
+        "title": "jmu-c-6.9",
+        "content": "下列程序的输出结果是 ( )。\n```c\n#include <stdio. h>\nint main ()\n{\nchar a[]= \"morning\",t;\nint i, j=0;\nfor(i=1;i<7; i++)\nif (a[j]>a[i])\nj=i;\nt=a[j];\na[j]=a[7];\na[7]=t;\nputs (a);\n160\nreturn 0;\n}\n```",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "80",
+                        "name": "字符串",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "71",
+                        "name": "for",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 4,
+        "res": "[{'name': '数组', 'description': '数组是一种存储多个相同类型数据的数据结构，可以通过下标访问数组中的元素。在C语言中，数组的下标从0开始。本题涉及到了数组的使用，通过下标访问数组元素并进行交换。'}, {'name': '循环', 'description': '循环是一种重复执行某段代码的结构。在C语言中，常用的循环结构有for循环、while循环和do-while循环。本题使用了for循环来遍历数组元素。'}, {'name': '条件语句', 'description': '条件语句用于根据条件的真假来执行不同的代码块。在C语言中，常用的条件语句有if语句和switch语句。本题使用了if语句来判断数组元素的大小关系。'}, {'name': '字符', 'description': '字符是C语言中的一种基本数据类型，用于表示单个字符。在C语言中，字符使用单引号括起来。本题涉及到了字符数组的使用，以及字符之间的比较和交换。'}, {'name': '标准库函数', 'description': '标准库函数是C语言提供的一些常用函数，可以通过#include <stdio.h>来引入。本题使用了标准库函数puts来输出字符串。'}]"
+    },
+    {
+        "sortId": 13,
+        "id": "1732190749126504448",
+        "title": "jmu-c-6.8",
+        "content": "下列对一维整型数组 a 的声明语句, 正确的是 ( )。",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "79",
+                        "name": "一维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name':'数组声明语句','description':'数组声明语句用于声明一维整型数组。在C语言中，数组声明语句的格式为：数据类型 数组名[数组长度]。'}]"
+    },
+    {
+        "sortId": 14,
+        "id": "1732190749122310144",
+        "title": "jmu-c-6.7",
+        "content": "下列程序的输出结果是 ( )。\n```c\n#include <stdio. h>\nint main()\n{\nint a[]={1,3,5},b[]={2,6,10};\nint i , s=0;\nfor (i =0;i <3;i++)\ns+=a[i]/b[i];\nprintf(\"%d\\n\",s);\nreturn 0;\n}\n```",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "79",
+                        "name": "一维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "71",
+                        "name": "for",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 4,
+        "res": "[{'name': '数组', 'description': '数组是一种存储多个相同类型数据的数据结构，可以通过下标访问数组中的元素。在C语言中，数组的下标从0开始。'}, {'name': '循环', 'description': '循环是一种重复执行某段代码的结构。在C语言中，常用的循环结构有for循环、while循环和do-while循环。'}, {'name': '整数除法', 'description': '整数除法是指两个整数相除得到的结果仍为整数。在C语言中，整数除法会将小数部分截断，只保留整数部分。'}]"
+    },
+    {
+        "sortId": 15,
+        "id": "1732190749118115840",
+        "title": "jmu-c-6.6",
+        "content": "下列对 C 语言字符数组的描述, 错误的是 ( )。",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "80",
+                        "name": "字符串",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name': 'C语言字符数组', 'description': 'C语言字符数组是一种用于存储字符序列的数据类型。它由一系列连续的字符组成，并以空字符\\0作为结束标志。字符数组可以用于存储字符串，也可以用于存储其他字符序列。在C语言中，字符数组的长度必须在定义时指定，且不能动态改变。'}]"
+    },
+    {
+        "sortId": 16,
+        "id": "1732190749113921536",
+        "title": "jmu-c-6.5",
+        "content": "下列程序的运行结果是 ( )。\n```c\n#include <stdio. h>\nint main()\n{\nint array[4][4];\nint i,j;\nfor(i=0;i<4;i++)\nfor(j=0;j<4;j++)\narray[i][j]=i+j;\nfor(i=0;i<4;i++)\nfor(j=0;j<4;j++)\nif(i==j‖i+j==3) array[i][j]=0;\nfor(j=0;j<4;j++)\nprintf(\"%2d\",array[2][j]);\nprintf(\"\\n\");\nreturn 0;\n}\n```",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "81",
+                        "name": "二维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "73",
+                        "name": "嵌套循环",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name': '数组的定义和初始化', 'description': '教学描述：介绍数组的定义和初始化的方法，包括一维数组和多维数组的定义和初始化方式。'}, {'name': '循环结构', 'description': '教学描述：介绍循环结构的概念和使用方法，包括for循环和嵌套循环的使用。'}, {'name': '条件语句', 'description': '教学描述：介绍条件语句的概念和使用方法，包括if语句的使用和条件表达式的写法。'}, {'name': '输出语句', 'description': '教学描述：介绍输出语句的概念和使用方法，包括printf函数的使用和格式化输出的方法。'}]"
+    },
+    {
+        "sortId": 17,
+        "id": "1732190749109727233",
+        "title": "jmu-c-6.4",
+        "content": "设有声明语句 int a\\[\\]\\[3\\] = {{1, 2, 3}, {4, 5, 6} };, 则 a、 a\\[1\\]、 a\\[1\\]\\[1\\]分别表示 ( )。",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "81",
+                        "name": "二维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name':'多维数组', 'description':'多维数组是指数组中的元素也是数组的一种数据结构，可以通过多个下标来访问数组中的元素。在C语言中，多维数组可以用来表示矩阵等复杂的数据结构。'}]"
+    },
+    {
+        "sortId": 18,
+        "id": "1732190749109727232",
+        "title": "jmu-c-6.3",
+        "content": "输入数据如下 (其中<CR>表示回车键):\n```\naaa bbb<CR>\nccc ddd<CR>\n```\n以下程序的运行结果是( )。\n```c\n#include <stdio. h>\nint main()\n{\nchar s1[6],s2[6],s3[6],s4[6];\nscanf(\"%s%s\",s1,s2);\ngets(s3);\ngets(s4);\nputs(s1);\nputs(s2);\nputs(s3);\nputs(s4);\nreturn 0;\n}\n```",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "79",
+                        "name": "一维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "80",
+                        "name": "字符串",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name': '输入输出函数', 'description': '教学描述：介绍C语言中的输入输出函数，包括scanf、gets和puts函数的使用方法和注意事项。'}]"
+    },
+    {
+        "sortId": 19,
+        "id": "1732190749105532928",
+        "title": "jmu-c-6.2",
+        "content": "以下程序的运行结果是 ( )。\n```c\n#include <stdio. h>\n#include <string. h>\nint main()\n{\nchar s[10]={'C','h','i','n','a'};\nprintf(\"%d\\n\",strlen(s));\nreturn 0;\n}\n```",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "79",
+                        "name": "一维数组",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name': '字符串长度', 'description': '字符串长度是指字符串中字符的个数，可以使用strlen函数来获取字符串的长度。'}]"
+    },
+    {
+        "sortId": 20,
+        "id": "1732190749097144320",
+        "title": "jmu-c-6.1",
+        "content": "假设已声明 char s[] = \" \\ \"Name \\ \\ Address \\ 023 \\ n\" ;, 则字符串所占的字节数是()。",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "78",
+                        "name": "数组",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "80",
+                        "name": "字符串",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 1,
+        "res": "[{'name': '字符串长度', 'description': '字符串长度是指字符串中字符的个数，可以使用strlen函数来计算字符串的长度。'}, {'name': '转义字符', 'description': '转义字符是一些特殊的字符序列，用于表示一些不可打印的字符或具有特殊含义的字符。在C语言中，常见的转义字符包括\\\\n表示换行符，\\\\t表示制表符，\\\\r表示回车符等。'}, {'name': '字符数组', 'description': '字符数组是由一系列字符组成的数组，可以用来存储和处理字符串。在C语言中，字符数组以null字符（\\\\0）作为结束标志。'}, {'name': '字节数', 'description': '字符串所占的字节数是指字符串在内存中所占用的字节数。在C语言中，每个字符占用一个字节的内存空间。'}]"
+    },
+    {
+        "sortId": 21,
+        "id": "1731846535922552832",
+        "title": "jmu-c-5.3",
+        "content": "递归法求两个数的最大公约数。\n### 函数接口定义：\n```c++\n在这里描述函数接口。例如：\nint gys(int m,int n); \n```\n\n其中, m 和 n 都是用户传入的参数。 函数用递归法求 m 和 n 的最大公约数。\n\n### 裁判测试程序样例：\n```c++\n在这里给出函数被调用进行测试的例子。例如：\n#include<stdio.h>\n\nint gys(int m,int n);\n\nint main()\n\n{\n\n    int m, n;\n\n    scanf(\"%d%d\", &m, &n);\n\n    printf(\"%d\\n\", gys(m, n));\n\n    return 0;\n\n}\n\n/* 请在这里填写答案 */\n```\n\n### 输入样例：\n\n在这里给出一组输入。例如：\n\n```in\n24 16\n```\n\n### 输出样例：\n\n在这里给出相应的输出。例如：\n\n```out\n8\n```\n",
+        "type": "CODE_COMPLETION",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "67",
+                        "name": "分支控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "68",
+                        "name": "if-else",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "74",
+                        "name": "函数与程序结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "75",
+                        "name": "函数定义与调用",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 0,
+        "res": "[{'name':'递归法求最大公约数'，'description':'使用递归法求两个数的最大公约数。'}]"
+    },
+    {
+        "sortId": 22,
+        "id": "1731845438931693568",
+        "title": "jmu-c-5.2",
+        "content": "请编写一个 char CalFun (int x) 函数, 从键盘输入一个百分制成绩 score, 按下列原则输出其等级: score≥90, 等级为 A; 80≤score<90, 等级为 B; 70≤score<80,等级为 C; 60≤score<70, 等级为 D; score<60, 等级为 E。\n### 函数接口定义：\n```c++\n在这里描述函数接口。例如：\nchar CalFun(int x); \n```\n其中, x 为输入的分数, 返回等级信息。\n\n### 裁判测试程序样例：\n```c++\n在这里给出函数被调用进行测试的例子。例如：\n#include<stdio.h>\n\nchar CalFun(int x);\n\nint main()\n\n{\n\n    int x;\n\n    scanf(\"%d\", &x);\n\n    printf(\"grade is:%c\", CalFun(x));\n\n    return 0;\n\n}\n\n/* 请在这里填写答案 */\n```\n\n### 输入样例1：\n\n```in\n95\n```\n\n### 输出样例1：\n\n```out\ngrade is:A\n```\n\n### 输入样例2：\n\n```in\n86\n```\n\n### 输出样例2：\n\n```out\ngrade is:B\n```\n\n### 输入样例3：\n\n```in\n55\n```\n\n### 输出样例3：\n\n```out\ngrade is:E\n```\n",
+        "type": "CODE_COMPLETION",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "74",
+                        "name": "函数与程序结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "75",
+                        "name": "函数定义与调用",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "67",
+                        "name": "分支控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "69",
+                        "name": "switch",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 0,
+        "res": "[{'name': '条件语句', 'description': '条件语句是一种根据条件判断来执行不同代码块的语句。在C语言中，条件语句使用if-else语句来实现。在这个习题中，需要使用条件语句来根据输入的分数判断等级。'}, {'name': '函数定义', 'description': '函数是一段完成特定任务的代码块，可以通过函数名来调用执行。在C语言中，函数的定义包括函数名、参数列表、返回值类型和函数体。在这个习题中，需要定义一个名为CalFun的函数来计算等级。'}, {'name': '输入输出', 'description': '输入输出是程序与用户或外部设备之间进行数据交互的过程。在C语言中，可以使用scanf函数从键盘输入数据，使用printf函数将结果输出到屏幕上。在这个习题中，需要使用scanf函数获取输入的分数，使用printf函数输出等级。'}]"
+    },
+    {
+        "sortId": 23,
+        "id": "1731843303670247424",
+        "title": "jmu-c-5.1",
+        "content": "请编写一个 fun()函数, 使其实现对汇款额 x 按如下公式计算应缴的汇费。\n![image.png](~/3facdfca-f915-4add-9a1e-fc42533836b5.png)\n### 函数接口定义：\n```c++\n float fun(int x);\n```\n\n其中, x 是用户传入的参数。 函数须返回分段函数的计算结果。\n\n### 裁判测试程序样例：\n```c++\n在这里给出函数被调用进行测试的例子。例如：\n#include<stdio.h>\n\n#include<math.h>\n\nfloat fun(int x);\n\nint main()\n\n{\n\n    int x;\n\n    float y;\n\n    scanf(\"%d\", &x);\n\n    y=fun(x);\n\n    printf(\"%.1f\", y);\n\n    return 0;\n\n}\n\n/* 请在这里填写答案 */\n```\n\n### 输入样例1：\n\n```in\n300 \n```\n\n### 输出样例1：\n\n```out\n5.5\n```\n\n### 输入样例2：\n```in\n1000\n```\n\n### 输出样例2：\n\n```out\n20.0\n```\n\n### 输入样例3：\n\n```in\n3000\n```\n\n### 输出样例3：\n\n```out\n48.0\n```\n\n### 输入样例4：\n\n```in\n6000\n```\n\n### 输出样例4：\n\n```out\n75.0\n```\n",
+        "type": "CODE_COMPLETION",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "74",
+                        "name": "函数与程序结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "75",
+                        "name": "函数定义与调用",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 0,
+        "res": "[{'name': '函数定义', 'description': '学生需要了解如何定义一个函数，并且理解函数的参数和返回值的含义。'}, {'name': '输入输出', 'description': '学生需要了解如何使用scanf和printf函数进行输入输出操作。'}, {'name': '算术运算', 'description': '学生需要了解如何进行算术运算，包括加法、减法、乘法和除法。'}, {'name': '条件语句', 'description': '学生需要了解如何使用条件语句进行条件判断，以便根据不同的情况执行不同的代码块。'}, {'name': '数学函数', 'description': '学生需要了解如何使用数学函数进行数值计算，例如使用pow函数进行幂运算。'}]"
+    },
+    {
+        "sortId": 24,
+        "id": "1731841784434601984",
+        "title": "jmu-c-5.2",
+        "content": "请在横线处填入代码, 将程序补充完整。 其中函数 MultiPrt ( int n) 的功能: 根据参数 n (0<n<10) 输出 1~n 之间的乘法表。 例如, 当 n = 3, 输出如下:\n```\n1*1=1 \n2*1=2 2*2=4 \n3*1=3 3*2=6 3*3=9 \n```\n```c++\n#include<stdio.h>\nvoid MultiPrt(int n)\n{\n    int i,j;\n    for( ; i<=n; i++)\n    {\n        for(j=1; ; j++)\n            printf(\"%d*%d=%d\\t\", i, j,  );\n        printf(\"\\n\");\n    }\n}\nint main()\n{\n    int n;\n    do\n    {\n        printf(\"Please input n (0<n<10):\");\n        scanf(\"%d\", &n);\n    }while(n<=0||n>9);\n    MultiPrt(n);\n    return 0;\n}\n```\n\n",
+        "type": "FILL_IN_THE_BLANK_FOR_PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "74",
+                        "name": "函数与程序结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "75",
+                        "name": "函数定义与调用",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "71",
+                        "name": "for",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 4,
+        "res": "[{'name':'循环语句', 'description':'循环语句用于重复执行一段代码，本题中使用了for循环语句来实现乘法表的输出。'}, {'name':'嵌套循环', 'description':'嵌套循环是指在一个循环体内再嵌套另一个循环体，本题中使用了两层嵌套循环来实现乘法表的输出。'}, {'name':'格式化输出', 'description':'格式化输出是指按照一定的格式将数据输出，本题中使用了printf函数来实现乘法表的输出，并使用了格式化字符串来控制输出的格式。'}, {'name':'函数定义和调用', 'description':'函数定义和调用是指在程序中定义一个函数，并在其他地方调用该函数，本题中定义了一个名为MultiPrt的函数，并在main函数中调用该函数。'}, {'name':'变量的声明和赋值', 'description':'变量的声明是指在程序中声明一个变量，赋予其一个类型和一个名称，本题中声明了变量i和j，并在循环中对其进行赋值。'}, {'name':'用户输入', 'description':'用户输入是指程序运行时，用户可以通过键盘输入数据，本题中使用了scanf函数来获取用户输入的n的值。'}]"
+    },
+    {
+        "sortId": 25,
+        "id": "1731832093478453248",
+        "title": "jmu-c-5.1",
+        "content": "请在横线处填入代码, 将程序补充完整。 其中函数 comb_fun( )输出满足等式 a×10+b×6+a×b = 120 的所有 a、 b 组合 (a 和 b 均为 [1, 9] 区间上的一位数)。 例如,当 a = 6、 b = 5 时, 6×10+5×6+6×5 = 120。\n```c++\n#include<stdio.h>\nvoid comb_fun( )\n{\n    int a,b;\n    for(a=1; a< ; a++)\n        for(b=1; b<10; b++)\n        {\n            if(k==a*10+b*6+ )\n            {\n                printf(\"a=%d b=%d:\\n\", a, b);\n                printf(\"%d*10+%d*6+%d*%d=%d\\n\", a, b, a, b, k);\n            }\n        }\n}\nint main()\n{\n    comb_fun(120);\n    return 0;\n} \n```\n\n",
+        "type": "FILL_IN_THE_BLANK_FOR_PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "74",
+                        "name": "函数与程序结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "75",
+                        "name": "函数定义与调用",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 3,
+        "res": "[{'name':'for循环', 'description':'for循环用于重复执行一段代码，可以指定循环的起始值、终止条件和每次循环的步长。在这道题中，使用for循环来遍历a和b的取值范围。'}, {'name':'if语句', 'description':'if语句用于根据条件判断是否执行某段代码。在这道题中，使用if语句判断是否满足等式a×10+b×6+a×b=120。'}, {'name':'printf函数', 'description':'printf函数用于输出格式化的字符串。在这道题中，使用printf函数输出满足等式的a和b的取值以及等式的计算结果。'}]"
+    },
+    {
+        "sortId": 26,
+        "id": "1731826505201717249",
+        "title": "jmu-c-5.6",
+        "content": "使用分别编译方法时, 在不同的编译单位之间能传递的变量和函数是 ( )。",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "74",
+                        "name": "函数与程序结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "77",
+                        "name": "变量作用域与存储类型",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name':'编译单位', 'description':'编译单位是指在分别编译方法中，每个源文件被编译成一个目标文件的过程。在不同的编译单位之间能传递的变量和函数是全局变量和全局函数。'}]"
+    },
+    {
+        "sortId": 27,
+        "id": "1731826505201717248",
+        "title": "jmu-c-5.5",
+        "content": "以下函数调用语句中有 ( ) 个实参。\n```c\nfunc((a1, a2, a3), (a4, a5));\n```",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "74",
+                        "name": "函数与程序结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "75",
+                        "name": "函数定义与调用",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name': '函数调用语句', 'description': '函数调用语句是C语言中调用函数的一种语法结构，通过函数调用可以执行函数中定义的代码块。函数调用语句由函数名和实参列表组成，实参列表用括号括起来，多个实参之间用逗号分隔。在给定的函数调用语句中，需要确定实参的个数。'}]"
+    },
+    {
+        "sortId": 28,
+        "id": "1731707007094173696",
+        "title": "小e涂色",
+        "content": "小e有一块 *n*\\**n* 的棋盘，棋盘的每一个格子都为黑色或者白\n\n色，小e现在要用他喜欢的红色去涂画棋盘。小e会找出棋盘中某一列中拥有相同颜色的\n\n最大的区域去涂画，帮助小e算算他会涂画多少个棋格。\n\n### 输入格式:\n\n输入数据包括 *n*\\+1 行：第一行为一个整数 *n*（1≤\n\n*n*≤50），即棋盘的大\n\n小，接下来的 *n* 行每行一个字符串表示第 *i* 行棋盘的颜色，'W'表示白色，'B'表示黑色。\n\n### 输出格式:\n\n输出小e会涂画的区域大小。\n\n### 输入样例:\n\n在这里给出一组输入。例如：\n\n```in\n3\n\nBWW\n\nBBB\n\nBWB\n```\n\n### 输出样例:\n\n在这里给出相应的输出。例如：\n\n```out\n3\n```",
+        "type": "PROGRAMMING",
+        "difficulty": 2,
+        "score": 8,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "73",
+                        "name": "嵌套循环",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "74",
+                        "name": "函数与程序结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "75",
+                        "name": "函数定义与调用",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 9,
+        "res": "[{'name': '二维数组', 'description': 'C语言中可以使用二维数组来表示棋盘，通过行和列的索引可以访问到每一个格子的颜色。'}, {'name': '循环', 'description': '可以使用循环来遍历棋盘的每一行，判断每一列中相同颜色的区域的大小。'}, {'name': '条件判断', 'description': '可以使用条件判断语句来判断当前格子的颜色是否与上一个格子的颜色相同。'}, {'name': '变量', 'description': '需要定义变量来记录当前最大的区域大小和当前区域的大小。'}, {'name': '字符串', 'description': '可以使用字符串来表示每一行棋盘的颜色。'}]"
+    },
+    {
+        "sortId": 29,
+        "id": "1731702441271328768",
+        "title": "鸡兔问题",
+        "content": "有一群鸡和一群兔，它们的只数相同，它们的脚数都是三位数，且这两个三位数\n\n的各位数字只能是 0、1、2、3、4、5。设计一个算法用蛮力法求鸡和兔的只数各是多\n\n少？它们的脚数各是多少？\n\n### 输入格式:\n\n无输入\n\n### 输出格式:\n\n输出为多行。每行为一个解，格式为\n\n鸡只数:x,兔只数:y,鸡脚数:x1,兔脚数:y1\n\n其中，x,y,x1,y1的值为求出的一组解，各组解按从小到大排序。\n\n### 输入样例:\n\n在这里给出一组输入。例如：\n\n```in\n\n```\n\n### 输出样例:\n\n在这里给出相应的输出。例如：\n\n```out\n\n```",
+        "type": "PROGRAMMING",
+        "difficulty": 1,
+        "score": 8,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "73",
+                        "name": "嵌套循环",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 8,
+        "res": "[{'name':'蛮力法', 'description':'蛮力法是一种通过穷举所有可能的解来求解问题的方法。在这个题目中，我们可以通过穷举所有可能的鸡和兔的只数来求解鸡和兔的只数和脚数。'}]"
+    },
+    {
+        "sortId": 30,
+        "id": "1731483862445813760",
+        "title": "jmu-c-4.2",
+        "content": "  输入一个正整数 n (1≤n≤9), 打印一个行数为 n 的、 由∗组成的等腰三角形图案。 当 n = 3 时, 输出如下等腰三角形图案:\n```\n***** \n *** \n  *\n```\n\n```c++\n#include<stdio.h>\nint main()\n{\n    int i, j, n;\n    scanf(\"%d\", &n);\n    for(i=n; i>0; i--)\n    {\n        for ()\n        {\n            printf (\" \");\n        }\n        for ()\n        {\n            printf (\"*\");\n        }\n        \n    }\n    return 0;\n}\n```\n\n",
+        "type": "FILL_IN_THE_BLANK_FOR_PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "70",
+                        "name": "循环控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "73",
+                        "name": "嵌套循环",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 3,
+        "res": "[{'name':'循环语句'，'description':'循环语句用于重复执行一段代码，可以使用for循环或者while循环来实现。在这道题中，使用for循环来控制打印行数和空格的数量。'}, {'name':'输入输出函数'，'description':'输入输出函数用于从用户输入获取数据或者将数据输出到屏幕上。在这道题中，使用scanf函数获取用户输入的正整数n，并使用printf函数打印等腰三角形图案。'}, {'name':'嵌套循环'，'description':'嵌套循环是指在一个循环体内再嵌套另一个循环体。在这道题中，使用嵌套循环来控制打印空格和星号的数量。'}]"
+    },
+    {
+        "sortId": 31,
+        "id": "1731254621863112704",
+        "title": "十进制转任意进制(自然数)",
+        "content": "请编写程序，将十进制数转换成 $$n$$ 进制数。\n\n#### 输入格式\n\n> 非负整数 $$x$$ 和 $$n$$\n\n其中：$$x (0 \\leq x \\leq 2^{-63} - 1)$$ 为十进制数，$$n (2 \\leq n \\leq 36)$$ 为数制。\n\n#### 输出格式\n\n> 非负整数 $$y$$\n\n其中：$$y$$ 为转换出来的 $$n$$ 进制整数 (超过 9 的数字，用大写字母表示：A 表示 10, B 表示 11, ..., Z 表示 35)。\n\n#### 输入样例1\n\n```in\n37 2\n\n```\n\n#### 输出样例1\n\n```out\n100101\n\n```\n\n#### 输入样例2\n\n```in\n4786 20\n\n```\n\n#### 输出样例2\n\n```out\nBJ6\n\n```\n",
+        "type": "PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "74",
+                        "name": "函数与程序结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "76",
+                        "name": "递归函数",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "67",
+                        "name": "分支控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "68",
+                        "name": "if-else",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 10,
+        "res": "[{'name': '进制转换', 'description': '学习如何将十进制数转换成其他进制数，包括输入格式、输出格式和转换规则。'}]"
+    },
+    {
+        "sortId": 32,
+        "id": "1731209470230888448",
+        "title": "汉诺塔",
+        "content": "汉诺（Hanoi）塔问题是一个经典的递归问题。\n\n设有A、B、C三个塔座；开始时，在塔座A上有若干个圆盘，这些圆盘自下而上，由大到小地叠在一起。要求将塔座A上的圆盘移到塔座B上，并仍按同样顺序叠放。在移动过程中要求遵守如下规则：\n\n每次只能移动一个圆盘；\n\n任何时刻都不允许将较大的圆盘压在较小的圆盘之上；\n\n在满足前两条规则的前提下，可将圆盘移至A、B、C中任何一塔座上。\n\n例如，3个圆盘的初始状态如下：\n\n<br>![image.png](~/a2a3e80e-4aab-450d-9b90-8a216e5b261d.png \"image.png\")\n\n<br>则移动过程如下：\n\nA->B\n\nA->C\n\nB->C\n\nA->B\n\nC->A\n\nC->B\n\nA->B\n\n要求实现一个递归函数，模拟输出n(1<=n<=8)个圆盘从塔座A借助塔座C移动到塔座B上的过程（用A->B表示将圆盘从A移到B，其他类似）。\n\n<br>\n\n```c++\n#include<iostream>\nusing namespace std;\n\n//将n个圆盘借助by从from移到to\n/*其中参数 n是圆盘数 、from是原来叠放圆盘的塔座 、to是最终叠放圆盘的塔座 、by是可借助的塔座。*/\nvoid hanoi(int n, char from, char to, char by)\n{\n    if()  ;\n    else{\n        hanoi();\n        cout<<from<<\"->\"<<to<<endl;\n        ;\n    }\n}\n//输入n，输出将原来在A上的n个圆盘借助C移动到B上的移动过程，控制到文件尾\nint main() {\n    int n, cnt=0;\n    while(cin>>n) {\n        cnt++;\n        if (cnt>1) cout<<endl;\n        hanoi(n, 'A', 'B', 'C');\n    }\n    return 0;\n}\n\n```",
+        "type": "FILL_IN_THE_BLANK_FOR_PROGRAMMING",
+        "difficulty": 1,
+        "score": 9,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "74",
+                        "name": "函数与程序结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "76",
+                        "name": "递归函数",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 3,
+        "res": "[{'name': '递归', 'description': '递归是一种重要的编程技巧，通过函数自身调用来解决问题。在汉诺塔问题中，使用递归可以简洁地实现圆盘的移动过程。'}, {'name': '函数', 'description': '函数是C语言中的基本组成单元，用于封装一段可重复使用的代码。在汉诺塔问题中，使用函数来实现圆盘的移动过程。'}, {'name': '变量', 'description': '变量是用于存储数据的内存空间，可以通过变量来存储圆盘的数量、塔座的名称等信息。在汉诺塔问题中，需要使用变量来记录圆盘的数量。'}, {'name': '循环', 'description': '循环是一种重复执行某段代码的结构，可以通过循环来实现多次圆盘的移动。在汉诺塔问题中，可以使用循环来实现多次圆盘的移动。'}, {'name': '输入输出', 'description': '输入输出是程序与用户或外部设备之间进行数据交换的过程，可以通过输入输出来控制圆盘的移动过程。在汉诺塔问题中，使用输入输出来获取圆盘的数量，并输出圆盘的移动过程。'}]"
+    },
+    {
+        "sortId": 33,
+        "id": "1730757056835055616",
+        "title": "jmu-c-3.1",
+        "content": "输入 3 个整数 x、 y、 z, 请把这 3 个数由小到大输出。\n\n### 输入样例:\n\n```in\n2 1 3 \n```\n\n### 输出样例:\n\n```out\nx=1, y=2, z=3\n```\n",
+        "type": "PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "67",
+                        "name": "分支控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "68",
+                        "name": "if-else",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 4,
+        "res": "[{'name':'排序算法'，'description':'排序算法是一种将一组数据按照特定顺序进行排列的算法。在C语言中，常用的排序算法有冒泡排序、插入排序、选择排序等。本题可以通过选择排序算法来实现对输入的三个整数进行排序。'}, {'name':'输入输出'，'description':'输入输出是C语言程序设计中的基本操作。本题需要从标准输入中读取三个整数，并将排序后的结果输出到标准输出中。在C语言中，可以使用scanf函数来读取输入，使用printf函数来输出结果。'}, {'name':'变量和赋值'，'description':'变量是C语言中存储数据的基本单元。本题需要定义三个整型变量x、y、z来存储输入的三个整数，并通过赋值操作将输入的值存储到相应的变量中。在C语言中，可以使用赋值运算符=来给变量赋值。'}, {'name':'条件语句'，'description':'条件语句是C语言中用于根据条件执行不同代码块的结构。本题可以使用条件语句来判断三个整数的大小关系，并根据大小关系进行交换。在C语言中，可以使用if语句来实现条件判断。'}, {'name':'循环语句'，'description':'循环语句是C语言中用于重复执行一段代码的结构。本题可以使用循环语句来多次进行比较和交换，直到三个整数按照从小到大的顺序排列。在C语言中，可以使用for循环或while循环来实现循环操作。'}]"
+    },
+    {
+        "sortId": 34,
+        "id": "1730756023098507264",
+        "title": "jmu-c-3.1",
+        "content": "写出以下程序段的运行结果。\n```c\nint a; \nscanf(\"%d\", &a); \nif(a > 50) printf(\"%d\", a); \nif(a > 40) printf(\"%d\", a); \nif(a > 30) printf(\"%d\", a); \n```\n输入 32,输出\n输入 46,输出\n输入 58,输出",
+        "type": "FILL_IN_THE_BLANK",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "67",
+                        "name": "分支控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "68",
+                        "name": "if-else",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name':'条件语句','description':'条件语句是根据给定的条件来决定程序的执行路径。在C语言中，条件语句使用if语句来实现。if语句的基本语法是：if (条件) { 代码块 }，其中条件是一个表达式，如果条件为真，则执行代码块中的语句。'}]"
+    },
+    {
+        "sortId": 35,
+        "id": "1730747808013053953",
+        "title": "jmu-c-3.3（条件表达式）",
+        "content": "以下程序段执行后变量 m 的值为 。\n```c\nint x=6, y=4, z=8, m;\nm=(x<y)?(x<z? x:z):(y<z? y:z);\n```",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
         "knowledgePointPaths": [
             {
                 "knowledgePoints": [
@@ -65,6 +1784,392 @@
                 ]
             }
         ],
-        "res": "[{'name':'闰年判断'，'description':'在C语言中，判断一个年份是否为闰年可以使用逻辑运算符和取余运算符。根据题目给出的条件，我们可以使用以下表达式来判断一个年份是否为闰年：(year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)。其中，% 表示取余运算符，== 表示相等运算符，&& 表示逻辑与运算符，|| 表示逻辑或运算符。'}]"
+        "referenceCount": 28,
+        "res": "[{'name': '条件运算符', 'description': '条件运算符是C语言中的一种特殊运算符，用于根据条件的真假选择不同的值进行赋值或计算。在上述程序段中，条件运算符用于比较x、y、z的大小，并根据比较结果选择最小的值赋给变量m。'}]"
+    },
+    {
+        "sortId": 36,
+        "id": "1730747808013053952",
+        "title": "jmu-c-3.2（逗号运算符）",
+        "content": "若已声明 “int t, a, b;”, 语句 “t = (a = 5, b = a++);” 执行后, 变量 t、 a、 b 的值依次为 。",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "65",
+                        "name": "表达式",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 4,
+        "res": "[{'name':'赋值运算符','description':'赋值运算符用于将一个值赋给变量。在C语言中，赋值运算符是一个等号（=），它将右边的值赋给左边的变量。在这个题目中，语句“t = (a = 5, b = a++);”使用了赋值运算符将值赋给变量t、a和b。其中，逗号运算符（,）用于将多个表达式连接在一起，它的结果是最后一个表达式的值。因此，这个语句的执行顺序是先将5赋给a，然后将a的值赋给b并且将a的值自增1，最后将a的值赋给t。'}]"
+    },
+    {
+        "sortId": 37,
+        "id": "1730747808000471040",
+        "title": "jmu-c-3.1（逻辑表达式）",
+        "content": "若已声明 “char x;”, 正确判断 x 中字符是大写英文字母的逻辑表达式为 。",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "65",
+                        "name": "表达式",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 35,
+        "res": "[{'name': '字符类型', 'description': '字符类型用于存储单个字符，包括大写英文字母、小写英文字母、数字、特殊字符等。在C语言中，字符类型使用char关键字进行声明。'}]"
+    },
+    {
+        "sortId": 38,
+        "id": "1730412707303616512",
+        "title": "jmu-c-2.3",
+        "content": "写出以下程序的运行结果。\n\n```c\n#include <stdio.h>\n\nint main()\n{\n    int a, b;\n    float x;\n    double y;\n    a=123, b=12345;\n    x=123.0456789;\n    y=123456.0456789;\n    printf(\"a=%4d, b=%4d\\n\", a, b);\n    printf(\"a=%-4d, b=%-4d\\n\", a, b);\n    printf(\"a=%-+4d, b=%4d\\n\", a, b);\n    printf(\"x=%12f, y=%12f\\n\", x, y);\n    printf(\"x=%5.2f, y=%5.2f\\n\", x, y);\n    printf(\"%s\\n\", \"How are you\");\n    printf(\"%7.2s\\n\", \"How are you\");\n    printf(\"%-.5s\\n\", \"How are you\");    \n    return 0;\n\n}\n\n```\n\n\n",
+        "type": "FILL_IN_THE_BLANK",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "66",
+                        "name": "输入输出格式化控制",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name':'数据类型','description':'C语言中的数据类型包括整型、浮点型、字符型等，本题涉及到整型、浮点型和字符型的使用。'}, {'name':'变量赋值','description':'本题涉及到变量的赋值操作，包括整型变量和浮点型变量的赋值。'}, {'name':'格式化输出','description':'本题涉及到使用printf函数进行格式化输出，包括整型、浮点型和字符串的格式化输出。'}, {'name':'转义字符','description':'本题涉及到转义字符的使用，如换行符、制表符等。'}]"
+    },
+    {
+        "sortId": 39,
+        "id": "1730388461957378048",
+        "title": "jmu-c-2.1",
+        "content": "下列程序的功能是按照转换规则: 华氏度= 32+摄氏度×1. 8, 将输入的摄氏温度转\n\n换为华氏温度。\n```c\n#include<stdio.h>\nint main(){\n cTemp,fTemp;\nscanf(“%f”, );\nfTemp=;\nprintf(“%f\\n”, fTemp);\nreturn 0;\n}\n```\n\n",
+        "type": "FILL_IN_THE_BLANK_FOR_PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "65",
+                        "name": "表达式",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 4,
+        "res": "[{'name': '变量声明和初始化', 'description': '在C语言中，变量需要先声明后使用。声明变量时需要指定变量的类型，并可以选择性地进行初始化。本题中需要声明并初始化两个变量cTemp和fTemp。'}, {'name': '输入输出函数', 'description': '在C语言中，可以使用scanf函数从标准输入中读取数据，并使用printf函数将数据输出到标准输出。本题中需要使用scanf函数读取输入的摄氏温度，并使用printf函数输出转换后的华氏温度。'}, {'name': '算术运算符', 'description': '在C语言中，可以使用算术运算符进行数值计算。本题中需要使用算术运算符进行摄氏温度到华氏温度的转换计算。'}, {'name': '数据类型', 'description': '在C语言中，不同的数据类型可以存储不同类型的数据，并对应不同的内存空间。本题中需要选择合适的数据类型来存储摄氏温度和华氏温度的值。'}, {'name': '注释', 'description': '在C语言中，可以使用注释来对代码进行说明和解释。本题中的代码中包含了注释，用于解释转换规则。'}]"
+    },
+    {
+        "sortId": 40,
+        "id": "1730385593170866176",
+        "title": "jmu-c-2.1",
+        "content": " 以下合法的标识符是 ()",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "65",
+                        "name": "表达式",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name':'标识符', 'description':'标识符是用来标识变量、函数、数组等程序实体的名称。在C语言中，标识符必须以字母或下划线开头，后面可以是字母、数字或下划线。合法的标识符示例包括：var1、_count、MAX_VALUE等。'}]"
+    },
+    {
+        "sortId": 41,
+        "id": "1730381145136656384",
+        "title": "jmu-c-1.1",
+        "content": "实现输入两个正整数, 输出较小值。\n\n### 输入格式:\n\n在一行中输入两个正整数。\n\n### 输出格式:\n\n在一行中输出较小的那个数。\n\n### 输入样例:\n```in\n4 7 \n```\n\n### 输出样例:\n```out\n4\n```\n",
+        "type": "PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "67",
+                        "name": "分支控制",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "68",
+                        "name": "if-else",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 8,
+        "res": "[{'name':'输入输出','description':'学习如何在C语言中进行输入和输出操作，包括使用scanf函数进行输入和使用printf函数进行输出。'}, {'name':'变量和数据类型','description':'学习C语言中的变量和数据类型，包括整型、浮点型、字符型等，以及如何声明和使用变量。'}, {'name':'条件语句','description':'学习C语言中的条件语句，包括if语句和switch语句，以及如何根据条件执行不同的代码块。'}, {'name':'运算符','description':'学习C语言中的运算符，包括算术运算符、关系运算符、逻辑运算符等，以及如何使用运算符进行数值计算和逻辑判断。'}, {'name':'循环语句','description':'学习C语言中的循环语句，包括for循环、while循环和do-while循环，以及如何使用循环语句进行重复执行代码块。'}, {'name':'函数','description':'学习C语言中的函数，包括函数的定义、函数的调用和函数的返回值，以及如何使用函数进行代码的模块化和重复利用。'}, {'name':'数组','description':'学习C语言中的数组，包括一维数组和多维数组，以及如何声明和使用数组来存储和处理多个相同类型的数据。'}, {'name':'指针','description':'学习C语言中的指针，包括指针的定义、指针的运算和指针的应用，以及如何使用指针来操作内存和实现高效的数据结构。'}, {'name':'字符串','description':'学习C语言中的字符串，包括字符串的定义、字符串的输入输出和字符串的处理，以及如何使用字符串来表示和操作文本数据。'}, {'name':'文件操作','description':'学习C语言中的文件操作，包括文件的打开、文件的读写和文件的关闭，以及如何使用文件来进行数据的持久化和共享。'}]"
+    },
+    {
+        "sortId": 42,
+        "id": "1730201685036863488",
+        "title": "jmu-c-1.2",
+        "content": "C 语言中用来标记注释内容的符号有 ( )。 (多选)",
+        "type": "MULTIPLE_CHOICE_MORE_THAN_ONE_ANSWER",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "89",
+                        "name": "其他",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "315",
+                        "name": "其他",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 0,
+        "res": "[{'name': '注释符号', 'description': '注释符号是用来在C语言中标记注释内容的符号。在C语言中，常用的注释符号有 /* 和 */。'}]"
+    },
+    {
+        "sortId": 43,
+        "id": "1730194120995471360",
+        "title": "jum -c-1.3",
+        "content": "C 语言程序必须有且仅有一个的函数是 ( )。",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "89",
+                        "name": "其他",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "315",
+                        "name": "其他",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 2,
+        "res": "[{'name':'主函数'，'description':'C语言程序必须有且仅有一个主函数，它是程序的入口点，程序从主函数开始执行。'}]"
+    },
+    {
+        "sortId": 44,
+        "id": "1730193131731128320",
+        "title": "jum-c-1.1",
+        "content": "C 语言的语句结尾需要使用符号 ( )。",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 2,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "89",
+                        "name": "其他",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "315",
+                        "name": "其他",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 1,
+        "res": "[{'name':'语句结尾符号','description':'C语言的语句结尾需要使用符号 ( )。'}]"
+    },
+    {
+        "sortId": 45,
+        "id": "1730122205463277568",
+        "title": "指针对数组元素赋值",
+        "content": "int a\\[10\\] = {0};\n\nint \\*p = a;\n\n以下为a\\[1\\]赋值为5的正确操作是",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 1,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "82",
+                        "name": "指针与结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "83",
+                        "name": "指针",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 32,
+        "res": "[{'name': '指针', 'description': '指针是C语言中的一种特殊数据类型，它存储了一个变量的内存地址。通过指针，我们可以直接访问和修改变量的值，还可以动态地分配和释放内存空间。在本题中，通过将数组a的地址赋给指针p，我们可以通过指针p来访问和修改数组a的元素。'}]"
+    },
+    {
+        "sortId": 46,
+        "id": "1730120897758953472",
+        "title": "指针所占内存的大小由其指向的数据类型的大小决定。",
+        "content": "指针所占内存的大小由其指向的数据类型的大小决定。",
+        "type": "TRUE_OR_FALSE",
+        "difficulty": 1,
+        "score": 1,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "82",
+                        "name": "指针与结构",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "83",
+                        "name": "指针",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "referenceCount": 15,
+        "res": "[{'name':'指针的大小', 'description':'指针所占内存的大小由其指向的数据类型的大小决定。'}]"
     }
 ]

@@ -1,0 +1,194 @@
+[
+    {
+        "sortId": 0,
+        "id": "1701115978840051712",
+        "title": "C01-04输入一个矩形的长和宽，求出周长及面积，并将结果小数点后保留2位输出。(20分)",
+        "content": "输入一个矩形的长和宽，求出周长及面积，并将结果小数点后保留2位输出。\n\n### 输入格式:\n\n在用scanf函数输入数据之前，要输出如下提示性语句：\n\n```\n请依次输入长和宽:\n```\n\n### 输出格式:\n\n### 输入样例:\n\n在这里给出一组输入。例如：\n\n```in\n1.25 2.25\n```\n\n### 输出样例:\n\n在这里给出相应的输出。例如：\n\n```out\n请依次输入长和宽:\nlength=7.00,area=2.81\n```",
+        "type": "PROGRAMMING",
+        "difficulty": 1,
+        "score": 20,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "66",
+                        "name": "输入输出格式化控制",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "res": "[{'name': '输入输出', 'description': '学习使用scanf函数进行输入，printf函数进行输出'}, {'name': '变量定义和赋值', 'description': '学习如何定义变量和给变量赋值'}, {'name': '数据类型', 'description': '学习不同的数据类型，如浮点型、整型等'}, {'name': '运算符', 'description': '学习如何使用运算符进行数学运算'}, {'name': '格式化输出', 'description': '学习如何使用printf函数进行格式化输出'}, {'name': '小数点保留', 'description': '学习如何保留小数点后指定位数的方法'}]"
+    },
+    {
+        "sortId": 1,
+        "id": "1697260400746143744",
+        "title": "计算4个整数的平均值",
+        "content": "从键盘读入4个整数，输出平均值。\n\n小贴士：所有符号是中文状态，Average中A是大写 ，除号不要写反了，/和\\\\是不一样的。\n\n### 输入格式:\n\n10  20  30  25\n\n### 输出格式:\n\nAverage为(10+20+30+25)/4=21.25\n\n小数点保留2位小数。\n\n### 输入样例:\n\n在这里给出一组输入。例如：\n\n```in\n10  20  30  25\n```\n\n### 输出样例:\n\n在这里给出相应的输出。例如：\n\n```out\nAverage为(10+20+30+25)/4=21.25\n```",
+        "type": "PROGRAMMING",
+        "difficulty": 1,
+        "score": 10,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "65",
+                        "name": "表达式",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            },
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "66",
+                        "name": "输入输出格式化控制",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "res": "[{'name':'输入输出','description':'学习如何使用scanf函数从键盘读入数据，并使用printf函数输出结果。'}, {'name':'变量和运算符','description':'学习如何定义变量来存储数据，并使用算术运算符进行计算。'}, {'name':'数据类型','description':'学习不同的数据类型，如整型和浮点型，以及如何进行类型转换。'}, {'name':'控制流程','description':'学习如何使用条件语句和循环语句来控制程序的执行流程。'}, {'name':'格式化输出','description':'学习如何使用格式化字符串来控制输出的格式，如保留小数点后两位。'}]"
+    },
+    {
+        "sortId": 2,
+        "id": "1696164001639981056",
+        "title": "打三次招呼",
+        "content": "请输出三行“Hello, World!”，请注意World的前面有一个空格。\n\n**有趣的尝试：**\n\n1. 你能用两种方法来实现题目要求吗？\n\n2. 试试World的前面不打空格，看提交结果是什么。\n\n```in\n```\n\n### 输出样例:\n\n```out\nHello, World!\nHello, World!\nHello, World!\n```",
+        "type": "PROGRAMMING",
+        "difficulty": 1,
+        "score": 5,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "65",
+                        "name": "表达式",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "res": "[{'name':'输出语句','description':'使用printf函数输出指定的字符串'}]"
+    },
+    {
+        "sortId": 3,
+        "id": "1674342761770119168",
+        "title": "加油??",
+        "content": "本题目要求输出加油五行。\n\n### 输入格式:\n\n无\n\n### 输出样例:\n\n在这里给出相应的输出。例如：\n\n```out\n加油\n加油\n加油\n加油\n加油\n```\n\n```in   \n1 1   \n```   \n```out   \n2   \n```",
+        "type": "PROGRAMMING",
+        "difficulty": 1,
+        "score": 20,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "66",
+                        "name": "输入输出格式化控制",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "res": "[{'name':'循环结构'，'description':'循环结构是一种重复执行某段代码的结构，可以使用for循环、while循环或do-while循环来实现。在本题中，可以使用循环结构来重复输出“加油”五行。'}]"
+    },
+    {
+        "sortId": 4,
+        "id": "1665207293866393600",
+        "title": "双精度实数 double 类型的字长",
+        "content": "双精度实数 double 类型的变量占用 ▁▁▁▁▁ 字节内存空间。",
+        "type": "MULTIPLE_CHOICE",
+        "difficulty": 1,
+        "score": 1,
+        "knowledgePointPaths": [
+            {
+                "knowledgePoints": [
+                    {
+                        "id": "63",
+                        "name": "C程序设计",
+                        "isLeaf": false,
+                        "enName": "C Programming"
+                    },
+                    {
+                        "id": "64",
+                        "name": "基本数据类型与表达式",
+                        "isLeaf": false,
+                        "enName": ""
+                    },
+                    {
+                        "id": "65",
+                        "name": "表达式",
+                        "isLeaf": true,
+                        "enName": ""
+                    }
+                ]
+            }
+        ],
+        "res": "[{'name':'double类型变量的内存空间', 'description':'double类型的变量在内存中占用的字节空间'}]"
+    }
+]

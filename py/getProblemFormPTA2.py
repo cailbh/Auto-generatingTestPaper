@@ -135,37 +135,46 @@ head = {}
 for h in headers:
     head[h['name']] = h['value']
 cont = 0
-i = 200
+i = 0
 page = 0
 
-while i == 200:
-    url = "https://pintia.cn/api/problems?page=0&limit=200&filter=%7B%22page%22%3A0%2C%22knowledgePointId%22%3A%2267%22%2C%22asc%22%3Afalse%2C%22statuses%22%3A%5B%22PENDING_REVIEW%22%2C%22REVIEWED%22%2C%22REJECTED%22%5D%2C%22knowledgePoint%22%3A%7B%22knowledgePoints%22%3A%5B%7B%22id%22%3A%2267%22%2C%22name%22%3A%22%22%2C%22isLeaf%22%3Afalse%2C%22enName%22%3A%22%22%7D%5D%7D%7D&sort_by=%7B%22asc%22%3Afalse%7D"
+while page <= 5:
+    url = "https://pintia.cn/api/problems?page=" + str(
+        page) + "&limit=200&filter=%7B%22page%22%3A0%2C%22asc%22%3Afalse%2C%22statuses%22%3A%5B%22PENDING_REVIEW%22%2C%22REVIEWED%22%2C%22REJECTED%22%5D%2C%22knowledgePoint%22%3A%7B%22knowledgePoints%22%3A%5B%7B%22id%22%3A%2263%22%2C%22name%22%3A%22%22%2C%22isLeaf%22%3Afalse%2C%22enName%22%3A%22%22%7D%5D%7D%7D&sort_by=%7B%22asc%22%3Afalse%7D"
+    # url = "https://pintia.cn/api/problems?page=0&limit=200&filter=%7B%22page%22%3A0%2C%22knowledgePointId%22%3A%2267%22%2C%22asc%22%3Afalse%2C%22statuses%22%3A%5B%22PENDING_REVIEW%22%2C%22REVIEWED%22%2C%22REJECTED%22%5D%2C%22knowledgePoint%22%3A%7B%22knowledgePoints%22%3A%5B%7B%22id%22%3A%2267%22%2C%22name%22%3A%22%22%2C%22isLeaf%22%3Afalse%2C%22enName%22%3A%22%22%7D%5D%7D%7D&sort_by=%7B%22asc%22%3Afalse%7D"
     # url = "https://pintia.cn/api/problems?page="+str(page)+"&limit=200&filter=%7B%22page%22%3A0%2C%22knowledgePointId%22%3A%2264%22%2C%22asc%22%3Afalse%2C%22statuses%22%3A%5B%22PENDING_REVIEW%22%2C%22REVIEWED%22%2C%22REJECTED%22%5D%2C%22knowledgePoint%22%3A%7B%22knowledgePoints%22%3A%5B%7B%22id%22%3A%2264%22%2C%22name%22%3A%22%22%2C%22isLeaf%22%3Afalse%2C%22enName%22%3A%22%22%7D%5D%7D%7D&sort_by=%7B%22asc%22%3Afalse%7D"
     # headers = result_json['request']['headers']
     time.sleep(0.5)
     parms02 = {
-        'limit': '200'
+        'limit': '2'
     }
     # head = {}
     # for h in headers:
     #     head[h['name']] = h['value']
+    # i=i+1
     ret = requests.get(url, headers=head)
-    cur_rel = ret.json()#['problems']
-    print(111, cur_rel)
+    cur_rel = ret.json()['problems']
+    # print(111, cur_rel)
     for s in cur_rel:
         curl = "https://pintia.cn/api/problems/" + str(s['id'])
         time.sleep(0.5)
         cret = requests.get(curl, headers=head)
         print(cont)
         cont += 1
-        final_result.append(cret.json()['problem'])
-    if len(cur_rel) < 200:
-        break
-    else:
-        page = page + 1
+        final_result.append(cret.json())  # ['problem'])
+    # if len(cur_rel) < 200:
+    #     break
+    # else:
+    if (page == 1) | (page % 2 == 0):
+        print("page:", page)
+        with open("fs1.json", "w", errors="igone", encoding="utf-8") as f:
+            f.write(json.dumps(final_result, indent=4, ensure_ascii=False))
 
-# with open("fs.json", "w", errors="igone", encoding="utf-8") as f:
-#     f.write(json.dumps(final_result, indent=4, ensure_ascii=False))
+        time.sleep(1)
+    page = page + 1
+
+with open("fs1.json", "w", errors="igone", encoding="utf-8") as f:
+    f.write(json.dumps(final_result, indent=4, ensure_ascii=False))
 #
-# BMPserver.stop()
-# web.quit()
+BMPserver.stop()
+web.quit()

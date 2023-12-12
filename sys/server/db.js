@@ -69,8 +69,8 @@ const createdRelSchema = mongoose.Schema({
 })
 
 const problemConceptSchema = mongoose.Schema({
-    concept: String,
-    problem: String
+    conceptId: String,
+    problemId: String
 })
 const conceptTreeSchema = mongoose.Schema({
     id: String,
@@ -84,6 +84,27 @@ const submissionsSchema = mongoose.Schema({
 const studentSchema = mongoose.Schema({
     id: String,
 })
+const proConRelSchema = mongoose.Schema({
+    problemId: String,
+    conceptId:String,
+    type:String
+})
+
+const proConScatterSchema = mongoose.Schema({
+    id: String,
+    x:Number,
+    y:Number,
+    kLab:String,
+    name:String
+})
+const proInConGPTScatterSchema = mongoose.Schema({
+    id: String,
+    x:Number,
+    y:Number,
+    kLab:String,
+    name:String,
+    type:String,
+})
 /************** 定义模型Model **************/
 const Models = {
    
@@ -93,7 +114,7 @@ const Models = {
     // ConceptProblem: mongoose.model('conceptProblem', conceptProblemSchema, 'filterDS_concept_problem'),
     ProblemConcept: mongoose.model('problemConcept', problemConceptSchema, 'proConRel'),//'problem_concept'),
     // Problem:mongoose.model('problem', problemsSchema, 'problems'),
-    Problem:mongoose.model('problem', problemsSchema, 'pp'),
+    Problem:mongoose.model('problem', problemsSchema, 'allProblems'),
     // newProblem:mongoose.model('newProblem', problemsSchema, 'newProblem'),
     
     // newProblem:mongoose.model('newProblem', problemsSchema, 'pp'),
@@ -101,6 +122,12 @@ const Models = {
     Submission:mongoose.model('submission', submissionsSchema, 'submissions'),
 
     createdRel:mongoose.model('createdRel', createdRelSchema, 'createdRel'),
+
+    
+    ProConGPTRel:mongoose.model('proConGPTRel', proConRelSchema, 'proConGPTRel'),
+    ProConScatter:mongoose.model('proConScatter', proConScatterSchema, 'conceptGptScatter'),
+    ProInConGPTScatter:mongoose.model('proInConGPTScatter', proInConGPTScatterSchema, 'proInConGPTScatter'),
+
 }
 
 module.exports = Models;

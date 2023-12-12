@@ -1,0 +1,76 @@
+.proConSankey {
+  width: 100%;
+  height: 100%;
+  /* position: fixed; */
+  /* z-index: 100; */
+  /* left: 0;
+    top: 0; */
+}
+
+#addGroupDiv{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 6px;
+  right: 99px;
+}
+#delGroupDiv{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 6px;
+  right: 66px;
+}
+
+#confirmGroupDiv{
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  top: 4px;
+  right: 29px;
+}
+
+.proConSankeyTooltip {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  /* padding-left: 10px;
+  padding-top: -10px;
+  padding-bottom: -10px; */
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 5px;
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); */
+  /* pointer-events: none; */
+}
+.proConSankeyTooltip.hidden {
+  display: none;
+}
+.proConSankeyTooltip p {
+  margin: 0;
+  font-size: 14px;
+  text-align: left;
+}
+.close {
+  position: absolute;
+  width: 490px;
+  height: 500px;
+  top: 50px;
+  right: 0;
+  /* padding-left: 10px;
+  padding-top: -10px;
+  padding-bottom: -10px; */
+  box-sizing: border-box;
+  background-color: none;
+  border-radius: 5px;
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); */
+  /* pointer-events: none; */
+}
+.close.hidden {
+  display: none;
+}
+.close p {
+  margin: 0;
+  font-size: 14px;
+  text-align: left;
+}

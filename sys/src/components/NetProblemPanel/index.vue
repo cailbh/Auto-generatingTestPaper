@@ -3,7 +3,12 @@
 
 <template>
   <div class="netPPanel">
-    <div class="panelHead">Correlation View</div>
+    <div class="panelHead">Correlation View
+      <span class="beRight">
+        <el-switch v-model="ifGPTRel" active-color="#13ce66" inactive-color="#ff4949" @change="changeRelType">
+        </el-switch>
+      </span>
+    </div>
     <!-- //SupportPanel</div> -->
     <div id="netPPanelDiv" class="panelBody" ref="netPPanelDiv">
       <div id="topicLine" ref="topicLine"></div>
@@ -39,13 +44,17 @@ export default {
   props: [],
   data() {
     return {
-      problemsData:[],
-      proIdList:[],
-      relByPro:[],
-      conByPro:[],
+      problemsData: [],
+      proIdList: [],
+      relByPro: [],
+      conByPro: [],
+      ifGPTRel:'false',
+
       typeRadio: "cell State",
       treeData: null,
       allRelationships: '',
+      allORelationships: '',
+      allGPTRelationships: '',
       toolsState: '',
       proAttrList: [],
       selectedPro: [],
@@ -85,6 +94,9 @@ export default {
     },
     netData() {
     },
+    allRelationships(){
+      this.updata();
+    },
     studentsData() {
       this.calcNetDataRady++;
     },
@@ -111,15 +123,32 @@ export default {
   methods: {
     getAllReltionship() {
       const _this = this;
-      let data = [];
       this.$http
         .get("/api/problem/allRelationship", { params: {} }, {})
-        // .get("/api/test", {}, {})
         .then((response) => {
-          console.log("allRelationship", response.body);
+          _this.allORelationships = response.body;
           _this.allRelationships = response.body;
           // _this.drawnetPData();
         });
+    },
+    getAllGPTReltionship() {
+      const _this = this;
+      this.$http
+        .get("/api/problem/allGPTRelationship", { params: {} }, {})
+        .then((response) => {
+          _this.allGPTRelationships = response.body;
+          // _this.drawnetPData();
+        });
+    },
+    changeRelType(val){
+      console.log(val);
+      if (val) {
+        this.allRelationships = this.allORelationships;
+      }
+      else {
+        this.allRelationships = this.allGPTRelationships;
+      }
+
     },
     drawnetPData() {
       const _this = this;
@@ -150,7 +179,7 @@ export default {
       let groups = svg.append("g").attr("id", "groups").attr("width", width).attr("height", height)
       // .attr("transform", "translate(" + graphGTransformX + ',' + graphGTransformY + ") scale(" + graphGTransformK + ")");
       // this.groupsSvg = groups;
- 
+
       let backG = groups.append("g").attr("id", "proRbackG").attr("width", width).attr("height", height);
       let arcG = groups.append("g").attr("id", "proRarcG").attr("width", width).attr("height", height);
       let relG = groups.append("g").attr("id", "proRrelG").attr("width", width).attr("height", height);
@@ -171,22 +200,22 @@ export default {
       // let proList = proInList[proId];
       let proList = proInList;
       console.log(111)
-      console.log(proList, proRel,problemConceptData);
+      console.log(proList, proRel, problemConceptData);
       let addEgList = { '0_0': [], "0_1": [], "1_0": [], "1_1": [] };
       // let conList = proRel[proId];
-      let jagep= {};
-      let jagec= {};
+      let jagep = {};
+      let jagec = {};
       for (let r = 0; r < problemConceptData.length; r++) {
         let curRel = problemConceptData[r];
         let pId = curRel['problemId'];
         let cId = curRel['conceptId'];
         // let type = curRel['type'];
-        if(jagec[cId]!=1)
+        if (jagec[cId] != 1)
           ent_nodeP.push({ "id": cId, "type": "concept" });
-        if(jagep[pId]!=1)
+        if (jagep[pId] != 1)
           ent_nodeP.push({ "id": pId, "type": "problem" });
-        jagep[pId]=1;
-        jagec[cId]=1;
+        jagep[pId] = 1;
+        jagec[cId] = 1;
         ent_edgeP.push({
           source: pId,
           target: cId,
@@ -203,7 +232,7 @@ export default {
       forceSimulationP.nodes(ent_nodeP)
         .on("tick");
 
-      let disLinear = d3.scaleLinear().domain([0, 200]).range([svgWidth / 5, svgWidth / 50]);
+      let disLinear = d3.scaleLinear().domain([0, 200]).range([svgWidth / 5, svgWidth / 10]);
       forceSimulationP.force("link")
         .links(ent_edgeP)
         .distance(disLinear(ent_nodeP.length + ent_edgeP.length));
@@ -317,7 +346,7 @@ export default {
           if (esy < rSize) esy = rSize;
           esy = esy > svgHeight - rSize ? svgHeight - rSize : esy;
 
-          _this.updateEntity(entG,esx,esy,`astPro_${d.id}`)
+          _this.updateEntity(entG, esx, esy, `astPro_${d.id}`)
 
           if (d.x < rSize) return rSize;
           return d.x > svgWidth - rSize ? svgWidth - rSize : d.x
@@ -360,7 +389,7 @@ export default {
       d3.select("#" + pId).remove();
       let entG = svg.append("g").attr("id", pId);
       entG.attr("transform", `translate(${x},${y})`);
-      drawTools.drawCircle(entG, 0, 0, 10, "red", 1, 1, 1, 'entCircle', pId) 
+      drawTools.drawCircle(entG, 0, 0, 10, "red", 1, 1, 1, 'entCircle', pId)
     },
     drawEntityConcept(svg, x, y, pId) {
       const _this = this;
@@ -416,7 +445,6 @@ export default {
     },
     updateEntity(svg, x, y, pId) {
       const _this = this;
-      console.log(pId)
       let entG = svg.select(`#${pId}`);
       let transformd = entG.attr("transform")
       let s = 'scale(1)';
@@ -435,12 +463,12 @@ export default {
       for (let c = 0; c < problemConceptData.length; c++) {
         let curPId = problemConceptData[c]['problemId'];
         let curCId = problemConceptData[c]['conceptId'];
-        if (problemsIdList.indexOf(curPId)>0) {
+        if (problemsIdList.indexOf(curPId) > 0) {
           proRel.push(problemConceptData[c]);
           conByPor.push(curCId)
         }
       }
-      console.log("rels",proRel);
+      console.log("rels", proRel);
       _this.relByPro = proRel;
       _this.conByPro = proRel;
     },
@@ -567,7 +595,7 @@ export default {
     const _this = this;
     this.$nextTick(() => {
       // _this.calcNetData();
-      
+
       // _this.getAllReltionship();
       _this.updata();
       d3.select(".netTooltip").classed("hidden", true);
@@ -576,15 +604,16 @@ export default {
   },
   mounted() {
     const _this = this;
-    
+
+    _this.getAllGPTReltionship();
     _this.getAllReltionship();
     this.$bus.$on('proIdList', (val) => {
       _this.proIdList = val;
       _this.updata();
     });
-    
+
     this.$bus.$on('allProblem', (val) => {
-     _this.problemsData = val;
+      _this.problemsData = val;
     });
   },
   // beforeDestroy() {
@@ -593,4 +622,6 @@ export default {
 } 
 </script>
 
-<style>@import './index.css';</style>
+<style>
+@import './index.css';
+</style>

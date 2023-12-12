@@ -55,6 +55,12 @@ function getRgbValue(str){
     return arr;
 }
 
+function getMaxMin(data, attrname) {
+  return [
+    Math.max.apply(Math, data.map(function (d) { return d[attrname]; })),
+    Math.min.apply(Math, data.map(function (d) { return d[attrname]; }))
+  ]
+}
 
 export default {
    deepClone:(obj)=>{return deepClone(obj);},
@@ -72,5 +78,8 @@ export default {
    },
    getRgbValue:(str)=>{
     return getRgbValue(str);
+   },
+   getMaxMin:(data, attrname)=>{
+    return getMaxMin(data, attrname);
    }
 }

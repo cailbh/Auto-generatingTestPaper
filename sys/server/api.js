@@ -6,8 +6,6 @@ const router = express.Router();
 const child_process = require('child_process');
 
 router.post('/api/test',function(req,res,next){
-    console.log('test');
-    console.log(req.body.params)
     //创建子进程
     //这里是shell语句，可以通过&&将多条命令执行，这里cmd 用activate就可以激活，只有conda的shell才需要加conda
     var workerProcess = child_process.exec('python ../public/py/test.py ', function (error, stdout, stderr) {
@@ -124,6 +122,39 @@ router.get('/api/problem/allRelationship', (req, res) => {
         }
     })
 });
+// 获取GPT关系接口
+router.get('/api/problem/allGPTRelationship', (req, res) => {
+    // 通过模型去查找数据库
+    models.ProConGPTRel.find((err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    })
+});
+// 获取问题概念GPT散点数据接口
+router.get('/api/problem/allProInConGPTScatterData', (req, res) => {
+    // 通过模型去查找数据库
+    models.ProInConGPTScatter.find((err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    })
+});
+// 获取概念散点数据接口
+router.get('/api/concept/allproConScatterData', (req, res) => {
+    // 通过模型去查找数据库
+    models.ProConScatter.find((err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    })
+});
 // 获取问题总数
 router.get('/api/problem/problemNum', (req, res) => {
     // 通过模型去查找数据库
@@ -140,7 +171,6 @@ router.get('/api/problem/problemNum', (req, res) => {
 });
 // 通过页码获取问题
 router.get('/api/problem/problemsByPage', (req, res) => {
-    console.log("req", req.query, "req")
     var pageNum = req.query['page']
     var pageSize = req.query['pageSize']
     const aggregate = [
@@ -171,7 +201,6 @@ router.get('/api/problem/problemsByPage', (req, res) => {
 });
 // 通过Id获取问题
 router.get('/api/problem/problemById', (req, res) => {
-    console.log("req", req.query, "req")
     var proIds = req.query['proIds'];
     const aggregate = [
         {

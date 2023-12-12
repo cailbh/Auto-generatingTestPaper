@@ -20,7 +20,7 @@ from langchain.schema import (
     SystemMessage
 )
 
-inputDir = r"problemsDel.json"
+inputDir = r"allProblemsDel.json"
 outFile = "problemsDelKD.json"
 result = []
 # openai.api_key = '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'  # 3/min
@@ -46,7 +46,7 @@ with open(inputDir, "r", encoding="utf-8") as f:
         i = i + 1
         print(i)
 
-        if i >= 59:
+        if i >= 0:
             chat = ChatOpenAI(temperature=0, openai_api_key=openai.api_key)
             resP = problem
             pContent = problem['content']

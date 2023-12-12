@@ -37,14 +37,14 @@
     scrollbar-width: none;
     float: left;
     width: 20%;
-    height: 43%;
+    height: 37%;
     
   }
   #procPanel{
     scrollbar-width: none;
     /* float: left; */
     width: 20%;
-    height: 57%;
+    height: 63%;
     bottom: 0;
     position: absolute;
   }
@@ -145,6 +145,11 @@
     height: 100%;
     /* background-color: #c32; */
   }
+  .beRight{
+    float: right;
+    margin-right: 10px;
+    /* width: 0px; */
+  }
   #graphContainer{
     
     scrollbar-width: none;
@@ -161,18 +166,34 @@
     height: 100%;
     /* background-color: #c32; */
   }
-  #proModelContainer{
+  #proConScatterContainer{
     
     scrollbar-width: none;
     position: absolute;
-    top: 614px;
+    /* top: 530px;
     left: 0px;
     float: left;
     width: 20%;
-    height: 57%;
+    height: 63%; */
+    top: 100%;
+    left: 0px;
+    float: left;
+    width: 100%;
+    height: 200%;
     /* background-color: #c32; */
   }
   
+  #proConSankeyContainer{
+    
+    scrollbar-width: none;
+    position: absolute;
+    top: 300%;
+    left: 0px;
+    float: left;
+    width: 100%;
+    height: 100%;
+    /* background-color: #c32; */
+  }
   #indexContainer{
     
     scrollbar-width: none;
