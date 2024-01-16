@@ -35,10 +35,25 @@
   }
   #proListPanel{
     scrollbar-width: none;
-    float: left;
+    /* float: left;
+    width: 20%;
+    height: 37%; */
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10000;
+    width: 20%;
+    height: 63%;
+  }
+
+  #paperListPanel{
+    scrollbar-width: none;
+    position: absolute;
+    top: 880px;
+    left: 0px;
+    z-index: 10000;
     width: 20%;
     height: 37%;
-    
   }
   #procPanel{
     scrollbar-width: none;
@@ -120,10 +135,15 @@
     height: 721px;
   }
   #netPPanel{
-    scrollbar-width: none;
+    /* scrollbar-width: none;
     float: left;
     width: 22%;
-    height: 50%;
+    height: 50%; */
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 22%;
+    height: 37%;
   }
   #scatterPanel{
     scrollbar-width: none;
@@ -163,7 +183,8 @@
     scrollbar-width: none;
     float: left;
     width:calc(58% - 541px);
-    height: 100%;
+    /* height: 100%; */
+    height: 48%;
     /* background-color: #c32; */
   }
   #proConScatterContainer{
@@ -175,11 +196,17 @@
     float: left;
     width: 20%;
     height: 63%; */
-    top: 100%;
+    /* top: 100%;
     left: 0px;
     float: left;
     width: 100%;
-    height: 200%;
+    height: 200%; */
+    position: absolute;
+    top: 0;
+    right: 0px;
+    float: left;
+    width: 22%;
+    height: 63%;
     /* background-color: #c32; */
   }
   
@@ -187,19 +214,24 @@
     
     scrollbar-width: none;
     position: absolute;
-    top: 300%;
+    /* top: 300%;
     left: 0px;
     float: left;
     width: 100%;
-    height: 100%;
+    height: 100%; */
+    position: absolute;
+    bottom: 0;
+    right: 601px;
+    width: calc(38% + 5px);
+    height: 52%;
     /* background-color: #c32; */
   }
   #indexContainer{
     
-    scrollbar-width: none;
+    /* scrollbar-width: none;
     position: absolute;
     top: 0px;
-    left: 545px;
+    left: 545px; */
     float: left;
     width: 20%;
     height: 100%;

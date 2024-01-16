@@ -90,6 +90,13 @@ const proConRelSchema = mongoose.Schema({
     type:String
 })
 
+const sankeyDataSchema = mongoose.Schema({
+    
+    source: Number,
+    target:Number,
+    value: String
+})
+
 const proConScatterSchema = mongoose.Schema({
     id: String,
     x:Number,
@@ -104,6 +111,18 @@ const proInConGPTScatterSchema = mongoose.Schema({
     kLab:String,
     name:String,
     type:String,
+})
+const paperSchema = mongoose.Schema({
+    id: String,
+    number:Number,
+    type0:Array,
+    type1:Array,
+    type2:Array,
+    type3:Array,
+})
+const paperSankeySchema = mongoose.Schema({
+    id: String,
+    link:Array,
 })
 /************** 定义模型Model **************/
 const Models = {
@@ -127,6 +146,12 @@ const Models = {
     ProConGPTRel:mongoose.model('proConGPTRel', proConRelSchema, 'proConGPTRel'),
     ProConScatter:mongoose.model('proConScatter', proConScatterSchema, 'conceptGptScatter'),
     ProInConGPTScatter:mongoose.model('proInConGPTScatter', proInConGPTScatterSchema, 'proInConGPTScatter'),
+
+    // SankeyData:mongoose.model('sankeyData', sankeyDataSchema, 'sankeyData'),
+    SankeyData:mongoose.model('sankeyData', sankeyDataSchema, 'allProSankeyData'),
+    ConceptOri:mongoose.model('conceptOri', conceptsSchema, 'conceptOri'),
+    Paper:mongoose.model('paper', paperSchema, 'papers'),
+    PaperSankey:mongoose.model('paperSankey', paperSankeySchema, 'paperSankeyData'),
 
 }
 

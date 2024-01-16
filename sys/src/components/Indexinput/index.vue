@@ -3,10 +3,11 @@
 
 <template>
   <div class="indexInput" ref="indexInputDiv">
-    <div class="panelHead">p</div>
+    <div class="panelHead">组卷参数</div>
     <div id="indexInput" class="panelBody">
       <el-tree :data="contentTreeData" show-checkbox node-key="id" default-expand-all :expand-on-click-node="false"
-        :render-content="renderContent">
+        :render-content="renderContent" 
+        ref="conTree">
       </el-tree>
       <el-divider></el-divider>
       <el-form label-position='right' label-width="80px">
@@ -69,6 +70,8 @@ export default {
       proName: '',
       proType: "",
       select: '',
+      paperData:[],
+      papersNum:"",
       proForm: {
         name: "",
         type: "",
@@ -79,6 +82,7 @@ export default {
         type2:0,
         type3:0,
         type4:0,
+        ids:[],
       },
       thisId: 10,
       contentTreeData: [{
@@ -202,6 +206,30 @@ export default {
     },
     toolAddRel(val) {
     },
+    paperData(val){
+      const _this = this;
+      console.log("pap",val);
+      let paperId = parseInt(_this.papersNum);
+      let len = 0;
+      for(let i=0;i<val.length;i++){
+        len+=val[i].length;
+      }
+      let curData= {
+        "id":paperId+"",
+        "type0":val[0],
+        "type1":val[1],
+        "type2":val[2],
+        "type3":val[3],
+        "number":len
+      }
+
+      this.$http
+        // .get("/api/problem/allProblem", { params: { name: "12345" } }, {})
+        .post("/api/paper/addPaper", { params: curData }, {})
+        .then((response) => {
+          _this.$bus.$emit("papperChange", "true");
+        });
+    },
     toolsState: {
       deep: true,
       handler(val) {
@@ -214,7 +242,9 @@ export default {
   },
   methods: {
 
-
+    conceptTreeChecked(val){
+      console.log(val)
+    },
     append(data) {
       const newChild = { id: this.thisId++, label: 'testtest', children: [], indexValue: 0, };
       if (!data.children) {
@@ -250,6 +280,13 @@ export default {
 
     onSubmit() {
       const _this = this;
+      let CheckedNodes = this.$refs.conTree.getCheckedNodes();
+      console.log("cc",CheckedNodes)
+      let ids = []
+      for(let i=0;i<CheckedNodes.length;i++){
+        ids.push(parseInt(CheckedNodes[i]['id'])-1)
+      }
+      _this.paperIndex.ids = ids;
       _this.getProblemsIds();
     },
     changTreeSlider(value,data) {
@@ -259,13 +296,12 @@ export default {
     getProblemsIds() {
       const _this = this;
       let data = [];
-      console.log(_this.paperIndex)
       this.$http
         // .get("/api/problem/allProblem", { params: { name: "12345" } }, {})
-        .post("/api/FormPaper", { params: _this.paperIndex }, {})
+        .post("/api/FormPaper", { params: {paperIndex: _this.paperIndex,paperId: _this.papersNum+""} }, {})
         .then((response) => {
-          console.log(response, response.body);
-          _this.$bus.$emit("proIdList", response.body);
+          // _this.$bus.$emit("proIdList", response.body);
+          _this.paperData = response.body;
         });
     },
     click_Ent(time) {
@@ -284,6 +320,9 @@ export default {
     d3.select(".chartTooltip").classed("hidden", true);
     this.$bus.$on('ConceptTree', (val) => {
       _this.conceptTree = val;
+    });
+    this.$bus.$on('papersNum', (val) => {
+      _this.papersNum = val;
     });
     // this.$refs.moveindexInputLeft.addEventListener("mouseover", _this.moveindexInputLeft); // 监听点击事件
 

@@ -27,12 +27,36 @@ router.post('/api/test',function(req,res,next){
         console.log('子进程已退出，退出码 '+code);
     });
   });
+router.post('/api/paper/addPaper',function(req,res,next){
+    console.log('addPaper');
+    console.log(req.body.params)
+    
+    let newPaper = new models.Paper({
+        id:req.body.params.id,
+        type0:req.body.params.type0,
+        type1:req.body.params.type1,
+        type2:req.body.params.type2,
+        type3:req.body.params.type3,
+        number:req.body.params.number
+    });
+    // 保存数据newAccount数据进mongoDB
+    newPaper.save((err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send('createAccount successed');
+        }
+    });
+
+
+  });
 
 router.post('/api/FormPaper',function(req,res,next){
     console.log('FormPaper');
     console.log(req.body.params)
-    let paperIndex = req.body.params;
-    let indexStr = paperIndex['type1']+' '+paperIndex['type2']+' '+paperIndex['type3']+' '+paperIndex['type4']+' ';
+    let paperIndex = req.body.params.paperIndex;
+    let paperId = req.body.params.paperId;
+    let indexStr = paperIndex['type1']+' '+paperIndex['type2']+' '+paperIndex['type3']+' '+paperIndex['type4']+' '+paperIndex['ids']+' '+paperId+' ';
     //创建子进程
     //这里是shell语句，可以通过&&将多条命令执行，这里cmd 用activate就可以激活，只有conda的shell才需要加conda
     var workerProcess = child_process.exec('python ../public/py/FormPaper.py '+indexStr, function (error, stdout, stderr) {
@@ -169,6 +193,20 @@ router.get('/api/problem/problemNum', (req, res) => {
     
     // res.send(cnt);
 });
+// 获取sankeyData总数
+router.get('/api/sankeyData', (req, res) => {
+    // 通过模型去查找数据库
+    models.SankeyData.find((err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(data)
+        }
+    })
+    //.count();
+    
+    // res.send(cnt);
+});
 // 通过页码获取问题
 router.get('/api/problem/problemsByPage', (req, res) => {
     var pageNum = req.query['page']
@@ -231,6 +269,37 @@ router.get('/api/problem/problemById', (req, res) => {
         }
     });
 });
+
+// 通过Id获取试卷SankeyData
+router.get('/api/paper/sankeyById', (req, res) => {
+    var paperId = req.query['paperId'];
+    const aggregate = [
+        {
+            "$project":
+            {
+                "_id": 0,
+                "id": 1,
+                "link": 1
+                // "cnt": {"$size": '$seq'}
+            }
+        },
+        {
+            "$match": {
+                "id":{$in:paperId}
+            }
+        },
+        // {"id":{$all:proIds}}
+    ]
+    // 通过模型去查找数据库
+    models.PaperSankey.aggregate(aggregate).then((err, data) => {
+        if (err) {
+            res.send(err);
+            console.log(err)
+        } else {
+            res.send([data]);
+        }
+    });
+});
 // 获取问题接口
 // router.get('/api/problem/allProblem', (req, res) => {
 //     // 通过模型去查找数据库
@@ -278,6 +347,74 @@ router.get('/api/Submission/allLog', (req, res) => {
 router.get('/api/concept/allConcept', (req, res) => {
     // 通过模型去查找数据库
     models.Concept.find((err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
+});
+// 获取试卷接口
+router.get('/api/paper/allPaper', (req, res) => {
+    // 通过模型去查找数据库
+    models.Paper.find((err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(data);
+        }
+    });
+});
+
+// 获取试卷总数
+router.get('/api/paper/paperNum', (req, res) => {
+    // 通过模型去查找数据库
+    models.Paper.find((err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send([data.length])
+        }
+    })
+    //.count();
+    
+    // res.send(cnt);
+});
+
+// 通过页码获取试卷
+router.get('/api/paper/papersByPage', (req, res) => {
+    var pageNum = req.query['page']
+    var pageSize = req.query['pageSize']
+    const aggregate = [
+        // {
+        //     "$project":
+        //     {
+        //         "_id": 0,
+        //         "title": 1,
+        //         "type": 1,
+        //         "id": 1,
+        //         // "cnt": {"$size": '$seq'}
+        //     }
+        // },
+        //  {"$sort": {"cnt": -1}},
+        // {"$match": {"cnt": {"$gt": 300, "$lte": 1000}}},
+        { "$skip": (parseInt(pageNum) - 1) * parseInt(pageSize) },
+        { "$limit": parseInt(pageSize) }
+    ]
+    // 通过模型去查找数据库
+    models.Paper.aggregate(aggregate).then((err, data) => {
+        if (err) {
+            res.send(err);
+            console.log(err)
+        } else {
+            res.send([data]);
+        }
+    });
+});
+// 获取概念接口
+router.get('/api/concept/ConceptOri', (req, res) => {
+    // 通过模型去查找数据库
+    models.ConceptOri.find((err, data) => {
         if (err) {
             res.send(err);
         } else {

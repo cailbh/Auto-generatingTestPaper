@@ -5,7 +5,7 @@
   <div class="paper" ref="paperDiv">
     <div class="panelHead"></div>
     <div id="paperPanel" class="panelBody">
-      <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelectProType">
+      <el-menu  class="el-menu-demo" mode="horizontal" @select="handleSelectProType">
         <el-menu-item index="1">选择题</el-menu-item>
         <el-menu-item index="2">判断题</el-menu-item>
         <el-menu-item index="3">填空题</el-menu-item>
@@ -13,14 +13,15 @@
       </el-menu>
       <div id="problemListPanel" ref="problemListPanel">
         <div class="proItem" v-for="proItem in proList" :key="proItem.id">
-          <template v-if="showProType.indexOf(proItem.type)>=0">
+          <template v-if="showProType.indexOf(proItem.type) >= 0">
             <el-card class="box-card">
               <div slot="header" class="clearfix">
-                <span>{{proItem.title}}</span>
-                <el-button style="float: right; padding: 3px 0" type="text" @click="click_ProDel(proItem.id)" >删除</el-button>
+                <span>{{ proItem.title }}</span>
+                <el-button style="float: right; padding: 3px 0" type="text"
+                  @click="click_ProDel(proItem.id)">删除</el-button>
               </div>
               <!-- <div v-for="o in 4" :key="o" class="text item"> -->
-                {{proItem.content}}
+              <div v-html="proItem.content"></div>
               <!-- </div> -->
             </el-card>
           </template>
@@ -56,9 +57,11 @@ export default {
     return {
       data: '',
       paperHeight: 0,
+      allPapers: "",
       proIdList: [],
       proList: [],
-      showProType:[],
+      paperSelectedData:'',
+      showProType: [],
       toolAddRel: false,
       toolAddRelMain: false,
       toolDelRel: false,
@@ -136,10 +139,40 @@ export default {
     },
     toolAddRel(val) {
     },
+    allPapers(val) {
+      const _this = this;
+      let idList = [];
+      for (let i = 0; i < val.length; i++) {
+        if (val[i]['Selected']) {
+          for (let t = 0; t < 4; t++) {
+            let tp = `type${t}`;
+            for (let d = 0; d < val[i][tp].length; d++) {
+              idList.push(val[i][tp][d])
+            }
+          }
+            _this.proIdList = idList;
+          break;
+        }
+      }
+    },
+    paperSelectedData(val){
+      const _this = this;
+      let idList = [];
+      // for (let i = 0; i < val.length; i++) {
+      //   if (val[i]['Selected']) {
+          for (let t = 0; t < 4; t++) {
+            let tp = `type${t}`;
+            for (let d = 0; d < val[tp].length; d++) {
+              idList.push(val[tp][d]+"")
+            }
+          }
+            _this.proIdList = idList;
+      //   }
+      // }
+    },
     toolsState: {
       deep: true,
       handler(val) {
-        console.log(val)
         this.toolAddRel = val['addRel'];
         this.toolAddRelMain = val['addRelMain'];
         this.toolDelRel = val['delRel'];
@@ -147,13 +180,10 @@ export default {
     },
     proIdList(val) {
       const _this = this;
-      console.log(val);
-      let proList = [];
-      let pro = _this.getProById(val);
-      proList.push(pro);
+      _this.$bus.$emit("proIdList", val);
+      _this.getProById(val);
     },
     proList(val) {
-      console.log("proList",val)
       this.updatePaper();
     }
   },
@@ -163,7 +193,6 @@ export default {
       const _this = this;
       this.$http
         .get("/api/problem/problemById", { params: { proIds: proIds } }, {})
-        // .get("/api/test", {}, {})
         .then((response) => {
           pro = response.body;
           _this.proList = pro;
@@ -171,39 +200,34 @@ export default {
 
       return pro;
     },
-    click_ProDel(val){
-      console.log(val);
+    click_ProDel(val) {
       const _this = this;
       _this.proIdList.splice(_this.proIdList.indexOf(val), 1);
-      console.log(_this.proIdList)
       // _this.$bus.$emit("proIdDelList", val);
     },
     handleSelectProType(val) {
       const _this = this;
-      if(val=='1'){
+      if (val == '1') {
         _this.showProType = ['MULTIPLE_CHOICE'];
       }
-      if(val=='2'){
+      if (val == '2') {
         _this.showProType = ['TRUE_OR_FALSE'];
       }
-      if(val=='3'){
+      if (val == '3') {
         _this.showProType = ['FILL_IN_THE_BLANK'];
       }
-      if(val=='4'){
-        _this.showProType = ['CODE_COMPLETION','PROGRAMMING'];
+      if (val == '4') {
+        _this.showProType = ['CODE_COMPLETION', 'PROGRAMMING'];
       }
     },
     updatePaper() {
-      // const _this = this;
-      // let proList = _this.proList;
-      // for(let i=0;i<proList.length;i++){
-      //   console.log(proList[i]);
-      //   const newDiv = document.createElement("div");
-      //   newDiv.className = 'proItem';
-      //   newDiv.innerHTML="<el-card class='box-card' > <div slot='header' class='clearfix'><span>卡片名称</span><el-button style='float: right; padding: 3px 0' type='text'>操作按钮</el-button></div><div v-for='o in 4' :key='o' class='text item'>{{'列表内容 ' + o }}</div></el-card>"
-      //   this.$refs.problemListPanel.appendChild(newDiv);
-      // }
+      const _this = this;
+      let proList = _this.proList;
+      for(let i=0;i<proList.length;i++){
+        proList[i].content = proList[i].content.toString().replaceAll("\n", "<br></br>");
+      }
     },
+    
     click_Ent(time) {
       this.$emit("timeDur", time);
     },
@@ -225,6 +249,12 @@ export default {
     });
     this.$bus.$on('proIdList', (val) => {
       _this.proIdList = val;
+    });
+    // this.$bus.$on('allPapers', (val) => {
+    //   _this.allPapers = val;
+    // });
+    this.$bus.$on('paperSelected', (val) => {
+      _this.paperSelectedData = val;
     });
     // this.$refs.movepaperLeft.addEventListener("mouseover", _this.movepaperLeft); // 监听点击事件
 

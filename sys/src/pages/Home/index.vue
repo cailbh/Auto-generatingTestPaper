@@ -17,9 +17,14 @@
         <div id="proListPanel" class="panel">
           <ProListPanel></ProListPanel>
         </div>
+
         <div id="proinputPanel" class="panel">
           <Proinput></Proinput> 
         </div>
+        <div id="paperListPanel" class="panel">
+          <PaperListPanel></PaperListPanel>
+        </div>
+
         <div id="procPanel" class="panel">
           <ProcPanel></ProcPanel>
         </div>
@@ -29,12 +34,12 @@
         
         <div id="paperContainerC" v-show="showGraph" class="panel">
         </div>
-        <div id="paperContainer" v-show="showGraph" class="panel">
-          <Paper :toolsState="toolsState"></Paper>
-        </div>
         <div id="indexContainer" v-show="showGraph" class="panel">
           <!-- <Paper :toolsState="toolsState"></Paper> -->
           <indexInput></indexInput>
+        </div>
+        <div id="paperContainer" v-show="showGraph" class="panel">
+          <Paper :toolsState="toolsState"></Paper>
         </div>
         <div id="proConScatterContainer" v-show="showGraph" class="panel">
           <!-- <Paper :toolsState="toolsState"></Paper> -->
@@ -77,6 +82,7 @@ import Scatter from '@/components/Scatter/index.vue';
 
 import ProcPanel from '@/components/ProblemContentPanel/index.vue';
 import ProListPanel from '@/components/ProblemsListContentPanel/index.vue';
+import PaperListPanel from '@/components/PaperListContentPanel/index.vue';
 
 import ControlPanel from '@/components/ControlPanel/index.vue'
 import NetPPanel from '@/components/NetProblemPanel/index.vue';
@@ -84,7 +90,7 @@ import GroupJson from "@/assets/json/group.json";
 import SetJson from "@/assets/json/quz.json";
 import tools from "@/utils/tools.js";
 export default {
-  components: { Head, Graph, Scatter, ProcPanel, ProListPanel, NetPPanel, ControlPanel,Proinput,Paper,IndexInput,proConScatter,proConSankey },
+  components: { Head, Graph, Scatter, ProcPanel, ProListPanel, NetPPanel, ControlPanel,Proinput,Paper,IndexInput,proConScatter,proConSankey,PaperListPanel },
   /* eslint-disable no-unused-vars */
   data() {
     return {
@@ -92,8 +98,10 @@ export default {
       submissionsData: [],
       groupData: GroupJson,
       setTimeData: SetJson,
+      conceptOri:'',
       allConcept:'',
       allProblem:'',
+      allPaper:'',
       netData: [],
       problemRelByConcept: [],
       problemListByConcept: [],
@@ -209,9 +217,25 @@ export default {
           this.$bus.$emit("allProblems", _this.allProblem);
         });
     },
+    getAllPapers() {
+      const _this = this;
+      let data = [];
+      this.$http
+        .get("/api/paper/allPaper", { params: { } }, {})
+        .then((response) => {
+          _this.allPaper = response.body;
+          this.$bus.$emit("allPapers", _this.allPaper);
+        });
+    },
     getAllConcepts() {
       const _this = this;
       let data = [];
+      this.$http
+        .get("/api/concept/ConceptOri", { params: { } }, {})
+        .then((response) => {
+          _this.ConceptOri = response.body;
+          this.$bus.$emit("ConceptOri", _this.ConceptOri);
+        });
       this.$http
         .get("/api/concept/allConcept", { params: { } }, {})
         .then((response) => {
@@ -222,6 +246,7 @@ export default {
     getAllData() {
       const _this = this;
       this.getAllProblems();
+      this.getAllPapers();
       this.getAllConcepts();
     }
   },

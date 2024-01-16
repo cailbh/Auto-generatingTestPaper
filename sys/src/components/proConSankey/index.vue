@@ -6,27 +6,27 @@
     <div class="panelHead"></div>
     <div id="proConSankeyCantain" class="panelBody" ref="proConSankeyCantain">
     </div>
-    
+
     <!-- <div class="close" ref="listen">
     </div> -->
     <!-- <el-button type="primary" @click="onSubmit">Create</el-button> -->
-    <div class="proConSankeyTooltip toolTip">
+    <!-- <div class="proConSankeyTooltip toolTip">
       <p>
-          <br /><strong class="name toolTipAttr"></strong>
-          <br /><strong class="text toolTipAttr"></strong>
-          <br /><strong class="attr0 toolTipAttr"></strong>
-          <br /><strong class="attr1 toolTipAttr"></strong>
-          <br /><strong class="attr2 toolTipAttr"></strong>
-          <br /><strong class="attr3 toolTipAttr"></strong>
-          <br /><strong class="attr4 toolTipAttr"></strong>
-        </p>
-    </div>
+        <br /><strong class="name toolTipAttr"></strong>
+        <br /><strong class="text toolTipAttr"></strong>
+        <br /><strong class="attr0 toolTipAttr"></strong>
+        <br /><strong class="attr1 toolTipAttr"></strong>
+        <br /><strong class="attr2 toolTipAttr"></strong>
+        <br /><strong class="attr3 toolTipAttr"></strong>
+        <br /><strong class="attr4 toolTipAttr"></strong>
+      </p>
+    </div> -->
   </div>
 </div></template>
-  
 <script>
 // import { param } from 'server/api';
 import * as d3 from 'd3'
+import * as d3Sankey from 'd3-sankey'
 import { onMounted, ref } from 'vue';
 import filenames from "@/utils/fileName";
 import domtoimage from 'dom-to-image';
@@ -34,6 +34,7 @@ import domtoimage from 'dom-to-image';
 // import TestRelJson from "@/assets/json/case2_fin_rel.json";
 import Circle from '@/utils/geometry/circle';
 import tools from "@/utils/tools.js";
+// import "@/utils/sankey.js";
 import drawTools from "@/utils/drawingTools.js";
 
 export default {
@@ -41,11 +42,15 @@ export default {
   data() {
     return {
       proName: '',
-      scatterData:'',
-      allProblems:'',
-      allConcepts:'',
-      allProInConGPTScatterData:'',
-      allproConSankeyData:'',
+      ConceptOri:'',
+      sankeyNodeData:'',
+      sankeyLinkData:'',
+      curPaperSankeyData:"",
+      sankeyData: '',
+      allProblems: '',
+      allConcepts: '',
+      allProInConGPTSankeyData: '',
+      allproConSankeyData: '',
       proType: "",
       select: '',
       proForm: {
@@ -53,10 +58,10 @@ export default {
         type: "",
         content: ""
       },
-      attrColorlist:[],
-      rootSvg:'',
-      width:0,
-      height:0,
+      attrColorlist: [],
+      rootSvg: '',
+      width: 0,
+      height: 0,
       thisId: 10,
       margin: { top: 5, right: 5, bottom: 5, left: 5 },
     };
@@ -76,33 +81,78 @@ export default {
         this.toolDelRel = val['delRel'];
       }
     },
-    scatterData(val){
-      const _this = this;
-      _this.updataAll();
+    // sankeyData: {
+    //   deep: true,
+    //   handler(val) {
+    //     console.log(val)
+    //     this.updataAll();
+    //   }
+    // },
+    sankeyNodeData(){
+      
+        this.updataAll();
     }
   },
   methods: {
-    getAllScatterData() {
+    getAllSankeyData() {
       const _this = this;
+    //   _this.sankeyData ={
+    //     "nodes": [
+    //       { "name": "A" },
+    //       { "name": "B" },
+    //       { "name": "C" },
+    //       { "name": "D" },
+    //       ],
+    //   "links": [
+    //     {'source':0,'target':2,'value':"110"},
+    //     {'source':0,'target':3,'value':"5"},
+    //     {'source':1,'target':2,'value':"4"},
+    //     {'source':1,'target':3,'value':"2"},
+
+    //   ]
+    // }
       this.$http
-        .get("/api/problem/allProInConGPTScatterData", { params: {} }, {})
+        .get("/api/sankeyData", { params: {} }, {})
         .then((response) => {
-          _this.allProInConGPTScatterData = response.body;
-          console.log("allProInConGPTScatterData",response.body);
-          _this.scatterData = _this.allProInConGPTScatterData;
-          // _this.allRelationships = response.body;
-          // _this.drawnetPData();
+          _this.sankeyLinkData = response.body;
+          _this.getAllSankeyNodeData();
         });
-      this.$http
-        .get("/api/concept/allproConSankeyData", { params: {} }, {})
-        .then((response) => {
-          _this.allproConSankeyData = response.body;
-          console.log("allproConSankeyData",response.body);
-          // _this.allRelationships = response.body;
-          // _this.drawnetPData();
-        });
+      // this.$http
+      //   .get("/api/concept/allproConSankeyData", { params: {} }, {})
+      //   .then((response) => {
+      //     _this.allproConSankeyData = response.body;
+      //     console.log("allproConSankeyData",response.body);
+      //     // _this.allRelationships = response.body;
+      //     // _this.drawnetPData();
+      //   });
     },
-    drawProConScatter(svg) {
+    
+    getAllSankeyNodeData() {
+      const _this = this;
+      let nodes = [];
+      let conOri = _this.ConceptOri;
+      let sankeyLinkData = _this.sankeyLinkData;
+      let j = 0;
+      let max = 0;
+      for(let i=0;i<conOri.length;i++){
+        nodes.push(conOri[i]);
+        j++;
+      }
+      for(let i=0;i<sankeyLinkData.length;i++){
+        let target = sankeyLinkData[i]['target'];
+        if(target>max){max=target;}
+      }
+      let i=0;
+      console.log(conOri, 2131313,j,max,nodes)
+      while(j<=max){
+        nodes.push({"name":`con${i}`});
+        i++;
+        j++
+      }
+      _this.sankeyNodeData = nodes;
+
+    },
+    drawProConSankey(svg) {
       const _this = this;
       const margin = _this.margin;
       let psvg = svg
@@ -120,175 +170,142 @@ export default {
       let entG = groups.append("g").attr("id", "proConSankeyentG").attr("width", width).attr("height", height);
       let frontG = groups.append("g").attr("id", "proConSankeyfrontG").attr("width", width).attr("height", height);
 
-      let scatterData = _this.scatterData;
-      let xMaxMinDR = tools.getMaxMin(scatterData, 'x');
-      let yMaxMinDR = tools.getMaxMin(scatterData, 'y');
-      let scatterxLinear = d3.scaleLinear().domain([xMaxMinDR[1], xMaxMinDR[0]]).range([0, width]);
-      let scatteryLinear = d3.scaleLinear().domain([yMaxMinDR[1], yMaxMinDR[0]]).range([0, height/2]);
+      // let scatterData = _this.scatterData;
+      // let xMaxMinDR = tools.getMaxMin(scatterData, 'x');
+      // let yMaxMinDR = tools.getMaxMin(scatterData, 'y');
+      // let scatterxLinear = d3.scaleLinear().domain([xMaxMinDR[1], xMaxMinDR[0]]).range([0, width]);
+      // let scatteryLinear = d3.scaleLinear().domain([yMaxMinDR[1], yMaxMinDR[0]]).range([0, height / 2]);
       let colorList = _this.attrColorlist;
-      const allProblems = _this.allProblems;
-      const allConcepts = _this.allConcepts;
-      for(let i=0;i<scatterData.length;i++){
-        let x = scatterxLinear(scatterData[i]['x']);
-        let y = scatteryLinear(scatterData[i]['y']);
-        let type = scatterData[i]['type'];
-        if(type == "kp"){
-          let points = drawTools.calcRegularPolygonPoints(3, x, y, 8);
-          let trigal = drawTools.drawPolygon(entG, points, `scatterCircle_${scatterData[i]['type']}_${scatterData[i]['id']}`, '0px', "grey", colorList[parseInt(scatterData[i]['kLab'])]);
-          // drawTools.drawCircle(entG, x, y, 5, colorList[parseInt(scatterData[i]['kLab'])], 1, 1, 1, 'scatterCircle', `scatterCircle_${scatterData[i]['type']}_${scatterData[i]['id']}`);
-          trigal.on("mousemove", function (d) {
-          let ts = d3.select(this);
-          let tp = ts.attr("id").split("_")[1]
-          let id = ts.attr("id").split("_")[2];
-          let ent = {}
-          // 更新浮层内容
-          let attr = ['title'];
-          let attrN = ['title'];
-          if(tp == 'pro'){
-            ent = allProblems.find(function(p){return p['id'] == id});
-            attr = ['title'];
-            attrN = ['title'];
-          }
-          else if(tp == 'kp'){
-            ent = allConcepts.find(function(c){return c['sortId'] == id});
-            
-            attr = ['name'];
-            attrN = ['name'];
-          }
-          console.log('id',d);
+      var node = _this.sankeyNodeData
+      var lk = _this.sankeyLinkData;
+      let marge = _this.margin;
 
-          let nametext = '';
-          // let ent = groupData.find(function (c) { return c['id'] == id });
-          var yPosition = d.offsetY + 2;
-          var xPosition = d.offsetX + 2;
-          
-          // if(d.clientX>2100){
-          //   xPosition = d.clientX - 210;
+      const nodeSort = function(a,b){
+        return 0;
+      }
+
+      var sankey = d3Sankey.sankey()
+        .nodeWidth(50)//每个资源块的水平像素宽度
+        .nodePadding(0)//资源块间的纵向间距
+        // .nodeAlign(d3Sankey.sankeyLeft) 
+        .nodeSort(nodeSort)
+        .size([width, height * 0.95]);
+      let { nodes, links } = sankey({
+        nodes: node.map(d => Object.assign({}, d)),
+        links: lk.map(d => Object.assign({}, d))
+            });
+      // var path = sankey.link();
+      var link = svg.append("g").selectAll(".link")
+        .data(links)
+        .enter().append("path")
+        .attr("class", "link")
+        .attr("id", "san")
+        .attr("fill","rgba(255, 0, 0,0)")
+        .attr("stroke", "rgba(132, 132, 132,0.3)")
+        .attr("stroke-width", d => d.width)
+        .style("mix-blend-mode", "multiply")
+        .attr("d", d3Sankey.sankeyLinkHorizontal())//链接的路径设置已经被sankey封装了，这里调用之后就可以生成连线呢的路径
+        //下面这句生成线的宽度，//线的宽度按照线端点两端块较小者扩宽，但为啥偏移max(1, d.dy）？
+        // .style("stroke-width", function (d) {
+        //   return Math.max(1, d.dy);
+        // })
+        // .attr("transform", function (d) { return "translate(" + marge.left + "," + marge.top + ")"; })
+        .sort(function (a, b) { return b.dy - a.dy; });//这句去掉效果一样不知为啥？
+      //(5)sankey设置链接提示
+      link.append("title")
+        .text(function (d) { return d.source.name + " → " + d.target.name + "\n" + d.value; });
+
+        const gradient = link.append("linearGradient")
+        // .attr("id", d => (d.uid = DOM.uid("link")).id)
+        .attr("gradientUnits", "userSpaceOnUse")
+        .attr("x1", d => d.source.x1)
+        .attr("x2", d => d.target.x0);
+    gradient.append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", d => colorList[parseInt(d.source.category)%colorList.length]);
+    gradient.append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", d => colorList[parseInt(d.target.category)%colorList.length]);
+
+      //(6)拖动
+      var node = svg.append("g").selectAll(".node")
+        .data(nodes)
+        .enter().append("g")
+        .attr("class", "node")
+        // .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
+
+        .call(d3.drag()
+          .on("drag", dragmove));
+      //(7)块
+      node.append("rect")
+        .attr("id", "san")
+        .attr("x", d => d.x0)
+        .attr("y", d => d.y0)
+        .attr("height", d => (d.y1 - d.y0))
+        .attr("width", (d) =>{
+          let rectWidth = d.x1 - d.x0;
+          if(d.index<=24){
+            let lay =  parseInt(d.lay);
+           rectWidth += (rectWidth/3)*(1-lay);
+          }
+          return rectWidth})
+        // .text(d => `${d.name}\n${d.value.toLocaleString()}`)
+        // .attr("height", function (d) { return d.dy; })
+        // .attr("width", sankey.nodeWidth())//刚才设置的块的宽度  
+        // .attr("transform", function (d) { return "translate(" + marge.left + "," + marge.top + ")"; })
+        .style("fill", function (d) {
+          let colorIndex =parseInt(d.index-25)%colorList.length;
+          if(d.index<=24){
+            colorIndex = parseInt(d.rootFatherIndex);
+          }
+          // na = d.name.substr(0, d.name.length - 1)
+          // if (na == 'ori') {
+          //   return mcolor[parseInt(d.name.substr(3)) - 1];
           // }
-          let nameText = ent['title'];
-          var scatterTooltip = d3
-            .select(".proConSankeyTooltip")
-            .style("left", xPosition + "px")
-            .style("top", yPosition + "px");
-          // 更新浮层内容
-          for (let a = 0; a < attr.length; a++) {
-
-            scatterTooltip.select(`.attr${a}`).text(`${attrN[a]} : ${ent[attr[a]]}`)
-          }
-          scatterTooltip.select(".name").text(nameText);
-          // 移除浮层hidden样式，展示浮层
-          scatterTooltip.classed("hidden", false);
-        }).on("mouseleave", function (d) {
-          _this.$bus.$emit("SelectingStu", "");
-          d3.select(".proConSankeyTooltip").classed("hidden", true);
-        })
-        }
-        else{
-        let circle = drawTools.drawCircle(entG, x, y, 5, colorList[parseInt(scatterData[i]['kLab'])], 1, 1, 1, 'scatterCircle', `scatterCircle_${scatterData[i]['type']}_${scatterData[i]['id']}`);
-        circle.on("mousemove", function (d) {
-          let ts = d3.select(this);
-          let tp = ts.attr("id").split("_")[1]
-          let id = ts.attr("id").split("_")[2];
-          let ent = {}
-          // 更新浮层内容
-          let attr = ['title'];
-          let attrN = ['title'];
-          if(tp == 'pro'){
-            ent = allProblems.find(function(p){return p['id'] == id});
-            attr = ['title'];
-            attrN = ['title'];
-          }
-          else if(tp == 'kp'){
-            ent = allConcepts.find(function(c){return c['sortId'] == id});
-            
-            attr = ['name'];
-            attrN = ['name'];
-          }
-          console.log('id',d);
-
-          let nametext = '';
-          // let ent = groupData.find(function (c) { return c['id'] == id });
-          var yPosition = d.offsetY + 2;
-          var xPosition = d.offsetX + 2;
-          
-          // if(d.clientX>2100){
-          //   xPosition = d.clientX - 210;
+          // else {
+            return colorList[colorIndex];
           // }
-          let nameText = ent['title'];
-          var scatterTooltip = d3
-            .select(".proConSankeyTooltip")
-            .style("left", xPosition + "px")
-            .style("top", yPosition + "px");
-          // 更新浮层内容
-          for (let a = 0; a < attr.length; a++) {
-
-            scatterTooltip.select(`.attr${a}`).text(`${attrN[a]} : ${ent[attr[a]]}`)
-          }
-          scatterTooltip.select(".name").text(nameText);
-          // 移除浮层hidden样式，展示浮层
-          scatterTooltip.classed("hidden", false);
-        }).on("mouseleave", function (d) {
-          _this.$bus.$emit("SelectingStu", "");
-          d3.select(".proConSankeyTooltip").classed("hidden", true);
-        })
-      }
-      }
-
-
-      let scatterConData = _this.allproConSankeyData;
-      let xconMaxMinDR = tools.getMaxMin(scatterConData, 'x');
-      let yconMaxMinDR = tools.getMaxMin(scatterConData, 'y');
-      let scatterConxLinear = d3.scaleLinear().domain([xconMaxMinDR[1], xconMaxMinDR[0]]).range([0, width]);
-      let scatterConyLinear = d3.scaleLinear().domain([yconMaxMinDR[1], yconMaxMinDR[0]]).range([height/2, height-50]);
-      for(let i=scatterConData.length-1;i>=0;i--){
-        let x = scatterConxLinear(scatterConData[i]['x']);
-        let y = scatterConyLinear(scatterConData[i]['y']);
-        let color = colorList[parseInt(scatterConData[i]['kLab'])]
-        if(parseInt(scatterConData[i]['id'])<19){
-          color = 'red';
         }
-        console.log(scatterConData[i])
-        let circles = drawTools.drawCircle(entG, x, y, 5, color, 1, 1, 1, 'scatterConCircle', `scatterConCircle_${scatterConData[i]['id']}`);
-        circles.on("mousemove", function (d) {
-          let ts = d3.select(this);
-          // let tp = ts.attr("id").split("_")[1]
-          let id = ts.attr("id").split("_")[1];
-          let ent = {}
-          // 更新浮层内容
-          let attr = ['name'];
-          let attrN = ['name'];
-          ent = scatterConData.find(function(c){return c['id'] == id});
-          console.log('id',ent,id);
-
-          let nametext = '';
-          // let ent = groupData.find(function (c) { return c['id'] == id });
-          var yPosition = d.offsetY + 2;
-          var xPosition = d.offsetX + 2;
-          
-          if(d.offsetX>200){
-            xPosition = d.offsetX - 210;
+        )
+        // .style("stroke", function (d) { 
+        //   if(d.index<=24)
+        //   return d3.rgb(d.color).darker(0.1); })//较深
+        .append("title")
+        .text(function (d) { return d.name + "\n" + d.value; });
+      //(8)文字
+      node.append("text")
+        .attr("x", function (d) { 
+          let rectWidth = d.x1 - d.x0;
+          if(d.index<=24){
+            let lay =  parseInt(d.lay);
+           rectWidth += (rectWidth/3)*(1-lay);
           }
-          if(d.offsetY>600){
-            yPosition = d.offsetY - 150;
-          }
-          let nameText = ent['name'];
-          var scatterTooltip = d3
-            .select(".proConSankeyTooltip")
-            .style("left", xPosition + "px")
-            .style("top", yPosition + "px");
-          // 更新浮层内容
-          for (let a = 0; a < attr.length; a++) {
-
-            scatterTooltip.select(`.attr${a}`).text(`${attrN[a]} : ${ent[attr[a]]}`)
-          }
-          scatterTooltip.select(".name").text(nameText);
-          // 移除浮层hidden样式，展示浮层
-          scatterTooltip.classed("hidden", false);
-        }).on("mouseleave", function (d) {
-          _this.$bus.$emit("SelectingStu", "");
-          d3.select(".proConSankeyTooltip").classed("hidden", true);
-        })
+          return d.x0+rectWidth; })
+        .attr("y", function (d) { return d.y0+(d.y1 - d.y0)/2; })
+        .attr("dy", ".35em")
+        .attr("id", "san")
+        .attr("text-anchor", "end")//文字在左边（中轴右边的）
+        .attr("transform", null)
+        .text(function (d) { return d.name; })
+        // .filter(function (d) { return d.x < width / 2; })//除去在中轴左边的 
+        // .attr("x", 6 + sankey.nodeWidth())
+        .attr("text-anchor", "start")//文字在右边
+        // .attr("transform", function (d) { return "translate(" + marge.left + "," + marge.top + ")"; })
+      // (9)拖动
+      function dragmove(d) {
+        d3.select(this).attr("transform", "translate(" + d.x + "," +
+          (d.y = //下面的纵坐标调整值是怎么计算的？
+            Math.max(0,
+              Math.min(
+                height - d.dy,
+                d3.event.y
+              ))) + ")");
+        sankey.relayout();//重新布局,线上下的位置调整
+        link.attr("d", path);//更新路径
       }
+
+
+
     },
     updataAll() {
       var _this = this;
@@ -307,7 +324,7 @@ export default {
       let entG = svg.append("g").attr("id", "entG").attr("width", width).attr("height", height);
       let sonG = svg.append("g").attr("id", "sonG").attr("width", width).attr("height", height);
       _this.rootSvg = svg;
-      _this.drawProConScatter(svg);
+      _this.drawProConSankey(svg);
       // });
     },
     click_Ent(time) {
@@ -322,7 +339,6 @@ export default {
   },
   mounted() {
     const _this = this;
-    _this.getAllScatterData();
     d3.select(".scatterTooltip").classed("hidden", true);
     d3.select(".chartTooltip").classed("hidden", true);
     this.$bus.$on('ConceptTree', (val) => {
@@ -333,12 +349,22 @@ export default {
     });
     this.$bus.$on('allConcepts', (val) => {
       _this.allConcepts = val;
+      _this.getAllSankeyData();
       _this.updataAll();
+    });
+    this.$bus.$on('ConceptOri', (val) => {
+      _this.ConceptOri = val;
     });
     this.$bus.$on('attrColorlist', (val) => {
       _this.attrColorlist = val;
     });
-    
+    this.$bus.$on('curPaperSankeyData', (val) => {
+      console.log("curPaperSankeyData",val)
+      _this.curPaperSankeyData = val[0].link;
+      _this.sankeyLinkData = _this.curPaperSankeyData;
+      _this.updataAll();
+    });
+
     // this.$refs.moveproConSankeyLeft.addEventListener("mouseover", _this.moveproConSankeyLeft); // 监听点击事件
 
   },

@@ -3,11 +3,11 @@
 
 <template>
   <div class="proListPanel">
-    <div class="panelHead">Content View </div>
+    <div class="panelHead">题目列表 </div>
     <!-- //SupportPanel</div> -->
     <div id="proListPanelDiv" class="panelBody" ref="proListPanelDiv">
 
-      <el-table :data="tableData" height = 420 style="width: 100%;">
+      <el-table :data="tableData" height = 770 style="width: 100%;">
         <el-table-column prop="type" label="题型" width="100">
         </el-table-column>
         <el-table-column prop="title" label="题目" width="300">
@@ -139,6 +139,7 @@ export default {
       _this.proIdList = val;
       console.log(val);
     });
+  
   },
   // beforeDestroy() {
   //   clearInterval(this.moveTimer);
